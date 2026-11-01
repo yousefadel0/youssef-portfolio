@@ -18,7 +18,7 @@ const screens: Record<ProjectSlug, { primary: () => React.JSX.Element; secondary
 export const ProjectScreen = ({ slug, view, className }: { slug: ProjectSlug; view: "primary" | "secondary"; className?: string }) => {
   const Screen = screens[slug][view];
   return (
-    <div className={className} dir="ltr">
+    <div className={className} dir="ltr" aria-hidden>
       <Screen />
     </div>
   );
@@ -33,7 +33,7 @@ export const ProjectComposite = ({ slug, className }: { slug: ProjectSlug; class
 
   if (primaryIsPhone) {
     return (
-      <div className={cn("relative flex items-end justify-center gap-[6%]", className)} dir="ltr">
+      <div className={cn("relative flex items-end justify-center gap-[6%]", className)} dir="ltr" aria-hidden>
         <div className="w-[40%] translate-y-[6%]">
           <Secondary />
         </div>
@@ -45,7 +45,7 @@ export const ProjectComposite = ({ slug, className }: { slug: ProjectSlug; class
   }
 
   return (
-    <div className={cn("relative pe-[8%] pb-[10%]", className)} dir="ltr">
+    <div className={cn("relative pe-[8%] pb-[10%]", className)} dir="ltr" aria-hidden>
       <Primary />
       <div className="absolute right-0 bottom-0 w-[26%]">
         <Secondary />

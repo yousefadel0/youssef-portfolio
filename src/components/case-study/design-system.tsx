@@ -41,7 +41,7 @@ export const DesignSystem = ({ project, t }: { project: Project; t: Dictionary }
               </span>
               <span style={{ color: textOn(c.hex) }}>
                 <span className="block text-[1.05rem] font-medium">{c.name}</span>
-                <span className="label mt-1 block opacity-80" dir="ltr">
+                <span className="label mt-1 block" dir="ltr">
                   {c.hex}
                 </span>
               </span>

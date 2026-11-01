@@ -163,7 +163,7 @@ export const BriefForm = ({ copy, locale }: { copy: Copy; locale: Locale }) => {
           </p>
           <ol className="hidden gap-4 sm:flex">
             {copy.steps.map((s, i) => (
-              <li key={s} className={cn("label transition-opacity", i === step ? "opacity-100" : "opacity-40")} aria-current={i === step ? "step" : undefined}>
+              <li key={s} className={cn("label transition-colors", i === step ? "text-ink underline decoration-kiln decoration-2 underline-offset-4" : "text-smoke")} aria-current={i === step ? "step" : undefined}>
                 {s}
               </li>
             ))}

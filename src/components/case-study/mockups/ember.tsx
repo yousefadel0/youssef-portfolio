@@ -55,13 +55,13 @@ export const EmberDesktop = () => (
       <div className="grid grid-cols-[1.1fr_1fr] items-center gap-[3em] px-[3em] py-[3.5em]">
         <div>
           <p className="text-[0.85em] tracking-[0.3em] text-black/70">AUTUMN COLLECTION · HAND-POURED IN SMALL BATCHES</p>
-          <h3 className="mt-[0.6em] text-[5.4em] leading-[0.95] font-light" style={serif}>
+          <p className="mt-[0.6em] text-[5.4em] leading-[0.95] font-light" style={serif}>
             Light something
             <br />
             <em className="font-normal" style={{ color: C.ember }}>
               worth keeping.
             </em>
-          </h3>
+          </p>
           <p className="mt-[1.4em] max-w-[30em] text-[1.1em] leading-[1.6] text-black/65">
             Coconut and rapeseed wax, cotton wicks, fragrance blended in our studio. Each candle burns for sixty slow hours.
           </p>
@@ -83,9 +83,9 @@ export const EmberDesktop = () => (
 
       <div className="px-[3em] pb-[3em]">
         <div className="mb-[1.6em] flex items-end justify-between">
-          <h4 className="text-[2.4em]" style={serif}>
+          <p className="text-[2.4em]" style={serif}>
             Best loved
-          </h4>
+          </p>
           <span className="text-[0.9em] text-black/70">View all 16 candles →</span>
         </div>
         <div className="grid grid-cols-4 gap-[1.5em]">
@@ -107,11 +107,11 @@ export const EmberDesktop = () => (
       </div>
 
       <div className="grid grid-cols-2 gap-[3em] px-[3em] py-[4em] text-[#F6F1E9]" style={{ background: C.charcoal }}>
-        <h4 className="text-[3.4em] leading-[1]" style={serif}>
+        <p className="text-[3.4em] leading-[1]" style={serif}>
           Poured by hand,
           <br />
           <em style={{ color: C.sand }}>never rushed.</em>
-        </h4>
+        </p>
         <p className="text-[1.1em] leading-[1.7] text-white/65">
           Every batch cures for two weeks before it leaves the studio, so the scent throws evenly from the first light to the last.
         </p>
@@ -142,9 +142,9 @@ export const EmberMobile = () => (
       </div>
       <div className="px-[1.4em] pt-[1.2em]">
         <div className="flex items-baseline justify-between">
-          <h3 className="text-[1.9em]" style={serif}>
+          <p className="text-[1.9em]" style={serif}>
             Cedar &amp; Smoke
-          </h3>
+          </p>
           <span className="text-[1.1em] tabular-nums">$48</span>
         </div>
         <p className="mt-[0.3em] text-[0.85em] text-black/70">Woody · smoky · 60 hour burn</p>

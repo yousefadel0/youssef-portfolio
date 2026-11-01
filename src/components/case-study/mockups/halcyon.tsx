@@ -58,9 +58,9 @@ export const HalcyonDesktop = () => (
             <p className="text-[0.85em]" style={{ color: C.slate }}>
               Growth · Activation
             </p>
-            <h3 className="mt-[0.2em] text-[2.1em] font-medium tracking-[-0.02em]" style={display}>
+            <p className="mt-[0.2em] text-[2.1em] font-medium tracking-[-0.02em]" style={display}>
               Why do teams stay?
-            </h3>
+            </p>
           </div>
           <div className="flex gap-[0.6em] text-[0.85em]">
             {["7d", "30d", "90d"].map((r) => (
@@ -156,9 +156,9 @@ export const HalcyonMobile = () => (
         <span className="rounded-full border px-[0.8em] py-[0.3em] text-[0.7em]" style={{ borderColor: C.line, color: C.slate }}>
           New · Retention cohorts →
         </span>
-        <h3 className="mt-[1em] text-[2.6em] leading-[1.02] font-medium tracking-[-0.03em]" style={display}>
+        <p className="mt-[1em] text-[2.6em] leading-[1.02] font-medium tracking-[-0.03em]" style={display}>
           Know why users <span style={{ color: C.mint }}>stay.</span>
-        </h3>
+        </p>
         <p className="mt-[0.9em] text-[0.9em] leading-[1.55]" style={{ color: C.slate }}>
           Product analytics for growth teams who want answers, not more charts.
         </p>

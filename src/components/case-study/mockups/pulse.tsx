@@ -44,9 +44,9 @@ export const PulseDesktop = () => (
             <p className="text-[0.85em]" style={{ color: C.mute }}>
               Week of 14 Dec · Zamalek branch
             </p>
-            <h3 className="text-[2.6em] leading-[1] font-extrabold tracking-[-0.03em] uppercase" style={display}>
+            <p className="text-[2.6em] leading-[1] font-extrabold tracking-[-0.03em] uppercase" style={display}>
               Class schedule
-            </h3>
+            </p>
           </div>
           <span className="rounded-full px-[1.2em] py-[0.7em] text-[0.85em] font-semibold" style={{ background: C.night, color: C.volt }}>
             + New class

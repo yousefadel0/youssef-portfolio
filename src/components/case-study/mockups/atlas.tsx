@@ -1,6 +1,6 @@
 import { BrowserFrame, PhoneFrame, StatusBar } from "../frames";
 
-const C = { bg: "#16181B", panel: "#1E2125", line: "#2C3035", mist: "#E7E9EC", mute: "#8C939C", amber: "#F5A524", pos: "#3DBE7A", neg: "#E5484D" };
+const C = { bg: "#16181B", panel: "#1E2125", line: "#2C3035", mist: "#E7E9EC", mute: "#8C939C", amber: "#F5A524", pos: "#3DBE7A", neg: "#EF5F63" };
 const ui = { fontFamily: "var(--font-inter, var(--font-geist)), system-ui, sans-serif" };
 const mono = { fontFamily: "var(--font-jetbrains, var(--font-geist-mono)), ui-monospace, monospace" };
 
@@ -68,7 +68,7 @@ export const AtlasDesktop = () => (
       <div className="flex-1 p-[1.8em]">
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="text-[1.6em] font-semibold tracking-[-0.01em]">Overview</h3>
+            <p className="text-[1.6em] font-semibold tracking-[-0.01em]">Overview</p>
             <p className="text-[0.82em]" style={{ color: C.mute }}>
               All branches · Jan 1 – Dec 14
             </p>
