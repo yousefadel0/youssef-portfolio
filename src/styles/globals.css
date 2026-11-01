@@ -1,0 +1,554 @@
+@import "tailwindcss";
+
+@custom-variant ar (&:where([lang="ar"], [lang="ar"] *));
+
+/* ───────────────────────── Tokens ───────────────────────── */
+
+@theme {
+  --color-ink: #131210;
+  --color-ink-2: #1d1b18;
+  --color-bone: #f1eadc;
+  --color-paper: #f8f4ec;
+  --color-kiln: #ff5a1f;
+  --color-nile: #0e3a34;
+  --color-nile-2: #134a42;
+  --color-smoke: #5b554c;
+  --color-ash: #b8b0a2;
+  --color-line: rgb(19 18 16 / 0.14);
+  --color-line-light: rgb(241 234 220 / 0.16);
+
+  --font-display: var(--ff-display);
+  --font-sans: var(--ff-sans);
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-quart: cubic-bezier(0.76, 0, 0.24, 1);
+
+  --breakpoint-xs: 30rem;
+  --breakpoint-3xl: 120rem;
+}
+
+:root {
+  --ff-display: var(--font-bricolage), "Arial Black", system-ui, sans-serif;
+  --ff-sans: var(--font-geist), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --gutter: clamp(1rem, 4vw, 3.5rem);
+  --header-h: 4.25rem;
+  --intro-delay: 950ms;
+  --display-tracking: -0.045em;
+  --display-leading: 0.88;
+}
+
+html[lang="ar"] {
+  --ff-display: var(--font-alexandria), "Segoe UI", Tahoma, sans-serif;
+  --ff-sans: var(--font-alexandria), "Segoe UI", Tahoma, sans-serif;
+  --display-tracking: 0;
+  --display-leading: 1.18;
+}
+
+html.intro-seen {
+  --intro-delay: 120ms;
+}
+
+/* ───────────────────────── Base ───────────────────────── */
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    scrollbar-color: var(--color-ink) var(--color-bone);
+  }
+
+  body {
+    background: var(--color-bone);
+    color: var(--color-ink);
+    font-family: var(--ff-sans);
+    font-size: 1rem;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
+  }
+
+  html[lang="ar"] body {
+    line-height: 1.8;
+  }
+
+  ::selection {
+    background: var(--color-kiln);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  a,
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  img,
+  svg {
+    display: block;
+  }
+}
+
+/* ───────────────────────── Type helpers ───────────────────────── */
+
+@utility display {
+  font-family: var(--ff-display);
+  font-weight: 800;
+  letter-spacing: var(--display-tracking);
+  line-height: var(--display-leading);
+}
+
+/* Display face at text-ish sizes: same voice, looser tracking so it stays readable. */
+@utility headline {
+  font-family: var(--ff-display);
+  font-weight: 700;
+  letter-spacing: calc(var(--display-tracking) * 0.4);
+  line-height: 1.08;
+}
+
+html[lang="ar"] .headline {
+  line-height: 1.45;
+}
+
+@utility label {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.72rem;
+  line-height: 1.3;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+html[lang="ar"] .label {
+  font-family: var(--font-alexandria), var(--font-geist-mono), sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@utility gutter {
+  padding-inline: var(--gutter);
+}
+
+@utility shell {
+  width: 100%;
+  max-width: 120rem;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* ───────────────────────── Grain ───────────────────────── */
+
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ───────────────────────── Intro loader (pure CSS) ───────────────────────── */
+
+@property --load {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--gutter);
+  background: var(--color-ink);
+  color: var(--color-bone);
+  animation: loader-out 0.7s var(--ease-quart) 0.8s forwards;
+  pointer-events: none;
+}
+
+.loader-count {
+  counter-reset: load var(--load);
+  animation: loader-count 0.75s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+.loader-count::after {
+  content: counter(load);
+}
+
+.loader-bar {
+  transform-origin: left;
+  animation: loader-bar 0.75s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+[dir="rtl"] .loader-bar {
+  transform-origin: right;
+}
+
+html.intro-seen .loader {
+  display: none;
+}
+
+@keyframes loader-count {
+  to {
+    --load: 100;
+  }
+}
+
+@keyframes loader-bar {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes loader-out {
+  to {
+    transform: translateY(-100%);
+    visibility: hidden;
+  }
+}
+
+/* ───────────────────────── Hero word rise (no JS) ───────────────────────── */
+
+.rise-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+  margin-bottom: -0.06em;
+}
+
+.rise-line > span {
+  display: inline-block;
+  transform: translateY(45%);
+  animation: rise 1.15s var(--ease-expo) forwards;
+  animation-delay: calc(var(--intro-delay) + var(--d, 0ms));
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fade-in 0.9s var(--ease-expo) forwards;
+  animation-delay: calc(var(--intro-delay) + var(--d, 0ms));
+}
+
+@keyframes rise {
+  to {
+    transform: none;
+  }
+}
+
+@keyframes fade-in {
+  to {
+    opacity: 1;
+  }
+}
+
+/* ───────────────────────── Scroll reveals (JS-gated) ───────────────────────── */
+
+html.js .reveal {
+  opacity: 0;
+  transform: translateY(1.75rem);
+  transition:
+    opacity 0.9s var(--ease-expo),
+    transform 1.1s var(--ease-expo);
+  transition-delay: var(--d, 0ms);
+}
+
+html.js .reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+.split .w {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.split .w > span {
+  display: inline-block;
+}
+
+html.js .split .w > span {
+  transform: translateY(110%);
+  transition: transform 1.05s var(--ease-expo);
+  transition-delay: calc(var(--i, 0) * 55ms + var(--d, 0ms));
+}
+
+html.js .split.is-in .w > span {
+  transform: none;
+}
+
+html.js .clip-reveal {
+  clip-path: inset(10% 6% 10% 6% round 4px);
+  transition: clip-path 1.3s var(--ease-expo);
+}
+
+html.js .clip-reveal.is-in {
+  clip-path: inset(0 0 0 0 round 0);
+}
+
+html.js .wipe-reveal {
+  clip-path: inset(0 98% 0 0);
+  transition: clip-path 1.1s var(--ease-quart);
+  transition-delay: var(--d, 0ms);
+}
+
+html.js [dir="rtl"] .wipe-reveal {
+  clip-path: inset(0 0 0 98%);
+}
+
+html.js .wipe-reveal.is-in {
+  clip-path: inset(0 0 0 0);
+}
+
+/* ───────────────────────── Marquee ───────────────────────── */
+
+.marquee-track {
+  animation: marquee 38s linear infinite;
+}
+
+[dir="rtl"] .marquee-track {
+  animation-name: marquee-rtl;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-rtl {
+  to {
+    transform: translateX(50%);
+  }
+}
+
+/* ───────────────────────── Route curtain ───────────────────────── */
+
+.curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  background: var(--color-kiln);
+  transform-origin: top;
+  pointer-events: none;
+}
+
+.curtain-lift {
+  animation: curtain-lift 0.75s var(--ease-quart) forwards;
+}
+
+.page-enter {
+  animation: page-enter 0.9s var(--ease-expo) 0.25s both;
+}
+
+@keyframes curtain-lift {
+  from {
+    transform: scaleY(1);
+  }
+  to {
+    transform: scaleY(0);
+  }
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+}
+
+/* Skip rendering offscreen sections until they approach the viewport. */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
+}
+
+/* Mobile menu: clip-path wipe, links rise in sequence. */
+.menu-panel {
+  clip-path: inset(0 0 100% 0);
+  visibility: hidden;
+  transition:
+    clip-path 0.7s var(--ease-quart),
+    visibility 0s linear 0.7s;
+}
+
+.menu-panel[data-open="true"] {
+  clip-path: inset(0 0 0 0);
+  visibility: visible;
+  transition:
+    clip-path 0.7s var(--ease-quart),
+    visibility 0s;
+}
+
+.menu-panel .menu-item {
+  transform: translateY(110%);
+  transition: transform 0.8s var(--ease-expo);
+}
+
+.menu-panel[data-open="true"] .menu-item {
+  transform: none;
+  transition-delay: calc(250ms + var(--i, 0) * 50ms);
+}
+
+/* ───────────────────────── Custom cursor ───────────────────────── */
+
+html.has-cursor,
+html.has-cursor a,
+html.has-cursor button,
+html.has-cursor [role="button"],
+html.has-cursor label {
+  cursor: none;
+}
+
+html.has-cursor input,
+html.has-cursor textarea,
+html.has-cursor select {
+  cursor: auto;
+}
+
+/* ───────────────────────── Lenis ───────────────────────── */
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* ───────────────────────── Device screens ───────────────────────── */
+
+.screen-scroll {
+  transition: transform 2.4s var(--ease-expo);
+}
+
+.group:hover .screen-scroll,
+.group:focus-within .screen-scroll {
+  transform: translateY(var(--scroll-to, -30%));
+}
+
+/* ───────────────────────── Mockup micro-motion ───────────────────────── */
+
+@keyframes flicker {
+  0%,
+  100% {
+    transform: scaleY(1) rotate(-1.5deg);
+  }
+  35% {
+    transform: scaleY(1.08) rotate(1deg);
+  }
+  70% {
+    transform: scaleY(0.96) rotate(-0.5deg);
+  }
+}
+
+.draw-line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  animation: draw-line 2.6s var(--ease-expo) both;
+}
+
+@keyframes draw-line {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+
+.grow-bar {
+  transform-origin: bottom;
+  animation: grow-bar 1.4s var(--ease-expo) both;
+}
+
+@keyframes grow-bar {
+  from {
+    transform: scaleY(0);
+  }
+}
+
+.ring-in {
+  animation: ring-in 1.8s var(--ease-expo) both;
+}
+
+@keyframes ring-in {
+  from {
+    stroke-dasharray: 0 999;
+  }
+}
+
+.caret {
+  animation: caret 1.1s steps(1) infinite;
+}
+
+@keyframes caret {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ───────────────────────── Reduced motion ───────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .loader {
+    display: none;
+  }
+
+  .rise-line > span,
+  .fade-in {
+    animation: none;
+    transform: none;
+    opacity: 1;
+  }
+
+  .marquee-track {
+    animation: none;
+  }
+
+  html.js .reveal,
+  html.js .split .w > span,
+  html.js .clip-reveal,
+  html.js .wipe-reveal {
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+  }
+}
