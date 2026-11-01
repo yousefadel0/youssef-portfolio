@@ -516,6 +516,43 @@ html.lenis body {
   }
 }
 
+/* ───────────────────────── Demo micro-motion ───────────────────────── */
+
+.grow-x {
+  transform-origin: left;
+  animation: grow-x 1.1s var(--ease-expo) both;
+}
+
+[dir="rtl"] .grow-x {
+  transform-origin: right;
+}
+
+@keyframes grow-x {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes bag-bump {
+  40% {
+    transform: scale(1.35);
+  }
+}
+
+@keyframes sheet-up {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+}
+
+@keyframes toast-in {
+  from {
+    transform: translateY(16px);
+    opacity: 0;
+  }
+}
+
 /* ───────────────────────── Reduced motion ───────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {

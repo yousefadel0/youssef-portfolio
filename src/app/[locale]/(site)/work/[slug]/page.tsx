@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { DesignSystem } from "@/components/case-study/design-system";
 import { ProjectLinks } from "@/components/case-study/project-links";
-import { ProjectComposite, ProjectScreen } from "@/components/case-study/project-mockup";
+import { isPhoneFirst, ProjectComposite, ProjectScreen } from "@/components/case-study/project-mockup";
 import { Parallax } from "@/components/motion/parallax";
 import { Reveal } from "@/components/motion/reveal";
 import { SplitText } from "@/components/motion/split-text";
@@ -84,7 +84,7 @@ export default async function CaseStudy({ params }: PageProps<"/[locale]/work/[s
         </div>
         <div className="group shell pb-16 md:pb-24" data-cursor="drag">
           <Reveal variant="clip">
-            <ProjectComposite slug={project.slug} className={project.slug === "tidal" ? "mx-auto max-w-[44rem]" : undefined} />
+            <ProjectComposite slug={project.slug} className={isPhoneFirst(project.slug) ? "mx-auto max-w-[44rem]" : undefined} />
           </Reveal>
         </div>
       </header>
@@ -151,9 +151,21 @@ export default async function CaseStudy({ params }: PageProps<"/[locale]/work/[s
             </div>
             <div className="group md:col-span-8" data-cursor="drag">
               <Reveal variant="clip">
-                <ProjectScreen slug={project.slug} view="primary" className={project.slug === "tidal" ? "mx-auto max-w-[22rem]" : undefined} />
+                <ProjectScreen slug={project.slug} view="primary" className={isPhoneFirst(project.slug) ? "mx-auto max-w-[22rem]" : undefined} />
               </Reveal>
             </div>
+          </div>
+          <div className="mt-16 flex flex-col gap-6 border-t pt-10 md:flex-row md:items-end md:justify-between" style={{ borderColor: `${theme.fg}33` }}>
+            <div className="max-w-xl">
+              <p className="label" style={{ color: theme.muted }}>
+                {t.work.liveBadge}
+              </p>
+              <p className="display mt-4 text-[clamp(2rem,4vw,3.6rem)] ar:leading-[1.25]">{t.caseStudy.liveTitle}</p>
+              <p className="mt-3 text-[1.05rem]" style={{ color: theme.muted }}>
+                {t.caseStudy.liveText}
+              </p>
+            </div>
+            <ProjectLinks project={project} locale={locale} t={t} showCaseStudy={false} />
           </div>
         </div>
       </section>

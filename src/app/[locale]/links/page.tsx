@@ -106,9 +106,14 @@ export default async function LinksPage({ params }: PageProps<"/[locale]/links">
           <ul className="-mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-3 sm:-mx-6 sm:px-6" dir={locale === "ar" ? "rtl" : "ltr"}>
             {projects.map((p) => (
               <li key={p.slug} className="w-[72%] shrink-0 snap-start">
-                <Link href={href(locale, `/work/${p.slug}`)} className="block h-44 p-5" style={{ background: p.theme.bg, color: p.theme.fg }}>
-                  <span className="label tabular" style={{ color: p.theme.muted }}>
-                    {pad(p.index)} · {p.copy[locale].type}
+                <Link href={site.projects[p.slug].liveUrl || href(locale, `/demo/${p.slug}`)} className="block h-44 p-5" style={{ background: p.theme.bg, color: p.theme.fg }}>
+                  <span className="label tabular flex items-center justify-between gap-2" style={{ color: p.theme.muted }}>
+                    <span>
+                      {pad(p.index)} · {p.copy[locale].type}
+                    </span>
+                    <span className="shrink-0 px-1.5 py-0.5" style={{ background: p.theme.accent, color: p.theme.onAccent }}>
+                      {t.work.liveBadge}
+                    </span>
                   </span>
                   <span className="headline mt-12 block text-[2.1rem]" dir="ltr">
                     <span className="block w-fit max-w-full rtl:ms-auto">{p.name}</span>
