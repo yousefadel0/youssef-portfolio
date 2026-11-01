@@ -2,7 +2,7 @@ import type { Project } from "./types";
 
 export const halcyon: Project = {
   slug: "halcyon",
-  index: 2,
+  index: 3,
   name: "Halcyon",
   year: "2026",
   theme: { bg: "#0C0E14", fg: "#EDEAE2", accent: "#39E58C", onAccent: "#0C0E14", muted: "#8A90A0" },

@@ -2,7 +2,7 @@ import type { Project } from "./types";
 
 export const pulseClub: Project = {
   slug: "pulse-club",
-  index: 3,
+  index: 4,
   name: "Pulse Club",
   year: "2026",
   theme: { bg: "#C9F31D", fg: "#0E0F0C", accent: "#0E0F0C", onAccent: "#C9F31D", muted: "#3D4312" },

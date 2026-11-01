@@ -8,7 +8,7 @@ import { cn, pad } from "@/lib/utils";
 type Item = { slug: string; name: string; type: string; tagline: string; href: string; theme: ProjectTheme };
 
 /**
- * Hover list of all five builds. On fine pointers a poster of the hovered build, set in its
+ * Hover list of all the builds. On fine pointers a poster of the hovered build, set in its
  * own colors, follows the cursor (fixed-positioned, so it never widens the page) and swaps
  * with a vertical mask. Elsewhere it is a plain list of links.
  */

@@ -13,7 +13,7 @@ const products = [
 ];
 
 /** A candle drawn in CSS: glass jar, wax, wick and a flickering flame. */
-const Candle = ({ jar, wax, size = 1, label = true }: { jar: string; wax: string; size?: number; label?: boolean }) => (
+export const Candle = ({ jar, wax, size = 1, label = true }: { jar: string; wax: string; size?: number; label?: boolean }) => (
   <div className="relative flex flex-col items-center" style={{ fontSize: `${size}em` }}>
     <div className="relative h-[3.2em] w-[1em]">
       <span className="absolute bottom-0 left-1/2 h-[3em] w-[1.2em] -translate-x-1/2 rounded-[50%_50%_45%_45%/60%_60%_40%_40%] bg-[radial-gradient(ellipse_at_50%_70%,#FFE7B0_0%,#FFB45A_35%,#E2652B_70%,transparent_72%)] motion-safe:animate-[flicker_2.4s_ease-in-out_infinite]" />

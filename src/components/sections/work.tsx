@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ProjectLinks } from "@/components/case-study/project-links";
-import { ProjectComposite } from "@/components/case-study/project-mockup";
+import { isPhoneFirst, ProjectComposite } from "@/components/case-study/project-mockup";
 import { Parallax } from "@/components/motion/parallax";
 import { Reveal } from "@/components/motion/reveal";
 import { SplitText } from "@/components/motion/split-text";
@@ -86,7 +86,7 @@ export const Work = ({ locale, t }: { locale: Locale; t: Dictionary }) => (
                 </span>
                 <Reveal variant="clip">
                   <Parallax speed={10}>
-                    <ProjectComposite slug={p.slug} className={p.slug === "tidal" ? "mx-auto max-w-[34rem]" : undefined} />
+                    <ProjectComposite slug={p.slug} className={isPhoneFirst(p.slug) ? "mx-auto max-w-[34rem]" : undefined} />
                   </Parallax>
                 </Reveal>
               </Link>

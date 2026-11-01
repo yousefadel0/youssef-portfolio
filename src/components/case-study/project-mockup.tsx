@@ -3,7 +3,9 @@ import { cn } from "@/lib/utils";
 import { AtlasDesktop, AtlasMobile } from "./mockups/atlas";
 import { EmberDesktop, EmberMobile } from "./mockups/ember";
 import { HalcyonDesktop, HalcyonMobile } from "./mockups/halcyon";
+import { MaskanDesktop, MaskanMobile } from "./mockups/maskan";
 import { PulseDesktop, PulseMobile } from "./mockups/pulse";
+import { SufraDish, SufraMenu } from "./mockups/sufra";
 import { TidalHome, TidalQuickAdd } from "./mockups/tidal";
 
 const screens: Record<ProjectSlug, { primary: () => React.JSX.Element; secondary: () => React.JSX.Element; primaryIsPhone?: boolean }> = {
@@ -12,7 +14,12 @@ const screens: Record<ProjectSlug, { primary: () => React.JSX.Element; secondary
   "pulse-club": { primary: PulseDesktop, secondary: PulseMobile },
   "atlas-console": { primary: AtlasDesktop, secondary: AtlasMobile },
   tidal: { primary: TidalHome, secondary: TidalQuickAdd, primaryIsPhone: true },
+  sufra: { primary: SufraMenu, secondary: SufraDish, primaryIsPhone: true },
+  maskan: { primary: MaskanDesktop, secondary: MaskanMobile },
 };
+
+/** True for app-only builds, whose main screen is a phone. */
+export const isPhoneFirst = (slug: ProjectSlug) => Boolean(screens[slug].primaryIsPhone);
 
 /** A single screen of a build: the desktop view (or main phone screen for app-only builds), or its mobile companion. */
 export const ProjectScreen = ({ slug, view, className }: { slug: ProjectSlug; view: "primary" | "secondary"; className?: string }) => {

@@ -2,7 +2,7 @@ import type { Project } from "./types";
 
 export const atlasConsole: Project = {
   slug: "atlas-console",
-  index: 4,
+  index: 6,
   name: "Atlas Console",
   year: "2026",
   theme: { bg: "#E7E9EC", fg: "#16181B", accent: "#F5A524", onAccent: "#16181B", muted: "#555B63" },

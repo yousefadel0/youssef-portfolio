@@ -2,7 +2,7 @@ import type { Project } from "./types";
 
 export const tidal: Project = {
   slug: "tidal",
-  index: 5,
+  index: 7,
   name: "Tidal",
   year: "2026",
   theme: { bg: "#0A1F2B", fg: "#F1F5F4", accent: "#5BE3C4", onAccent: "#0A1F2B", muted: "#8FB0B8" },

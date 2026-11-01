@@ -1,4 +1,4 @@
-import { Archivo, Fraunces, IBM_Plex_Sans_Arabic, Inter, JetBrains_Mono, Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
+import { Archivo, Fraunces, IBM_Plex_Sans_Arabic, Instrument_Serif, Inter, JetBrains_Mono, Plus_Jakarta_Sans, Reem_Kufi, Space_Grotesk } from "next/font/google";
 
 /**
  * Typefaces of the five builds, used only on case-study pages so the specimens are real.
@@ -18,6 +18,9 @@ const plexArabic = IBM_Plex_Sans_Arabic({
   preload: false,
 });
 
-export const projectFontVariables = [fraunces, inter, spaceGrotesk, archivo, jetbrains, jakarta, plexArabic]
+const reemKufi = Reem_Kufi({ subsets: ["arabic", "latin"], variable: "--font-reem-kufi", display: "swap", preload: false });
+const instrumentSerif = Instrument_Serif({ subsets: ["latin"], weight: "400", style: ["normal", "italic"], variable: "--font-instrument-serif", display: "swap", preload: false });
+
+export const projectFontVariables = [fraunces, inter, spaceGrotesk, archivo, jetbrains, jakarta, plexArabic, reemKufi, instrumentSerif]
   .map((f) => f.variable)
   .join(" ");

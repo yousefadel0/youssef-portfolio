@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ProjectComposite, ProjectScreen } from "@/components/case-study/project-mockup";
+import { isPhoneFirst, ProjectComposite, ProjectScreen } from "@/components/case-study/project-mockup";
 import { Reveal } from "@/components/motion/reveal";
 import { SplitText } from "@/components/motion/split-text";
 import { FinalCta } from "@/components/sections/final-cta";
@@ -110,8 +110,8 @@ export default async function ServicesPage({ params }: PageProps<"/[locale]/serv
                   style={{ background: example.theme.bg, color: example.theme.fg }}
                 >
                   <Reveal variant="clip">
-                    {example.slug === "tidal" ? (
-                      <ProjectScreen slug="tidal" view="primary" className="mx-auto max-w-[16rem]" />
+                    {isPhoneFirst(example.slug) ? (
+                      <ProjectScreen slug={example.slug} view="primary" className="mx-auto max-w-[16rem]" />
                     ) : (
                       <ProjectComposite slug={example.slug} />
                     )}
