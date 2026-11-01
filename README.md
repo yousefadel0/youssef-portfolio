@@ -10,8 +10,9 @@ Art direction: **"The Build Sheet"**. Warm paper, oversized Bricolage Grotesque,
 
 | Page | Route |
 | --- | --- |
-| Home: hero, services, five showcase builds, pinned process, pricing, about, FAQ, CTA | `/en`, `/ar` |
-| Case studies ×5 (problem, approach, design system, screens, features, stack, results) | `/en/work/<slug>` |
+| Home: hero, services, seven showcase builds, pinned process, pricing (packages, value breakdown, comparison, estimate builder), about, FAQ, CTA | `/en`, `/ar` |
+| Case studies ×7 (problem, approach, design system, screens, features, stack, results) | `/en/work/<slug>` |
+| **Live demos ×7**: working apps with sample data (store, QR menu, SaaS site, booking, real estate, dashboard, finance app) | `/en/demo/<slug>` |
 | Services in detail + add-ons | `/en/services` |
 | Start a project: 4-step brief form with progress, zod, honeypot, WhatsApp fallback | `/en/contact` |
 | CV page with PDF download | `/en/cv` |
@@ -22,7 +23,9 @@ Every page has an Arabic twin under `/ar` with real RTL, generated Open Graph im
 
 **Stack:** Next.js 16 (App Router) · TypeScript · Tailwind CSS 4 · GSAP + ScrollTrigger · Lenis · Framer Motion (contact form only) · zod · Resend · `next/og`.
 
-All five project mockups are drawn in code (HTML/CSS/SVG) in each build's own palette and typefaces — no screenshots.
+All project mockups are drawn in code (HTML/CSS/SVG) in each build's own palette and typefaces — no screenshots. Every build also has a working live demo a visitor can click through, with a desktop / phone preview toggle.
+
+Live site: https://youssef-portfolio-pi.vercel.app
 
 ## Run it
 
@@ -49,14 +52,15 @@ Checks: `npm run lint` and `npx tsc --noEmit` (both run clean).
 | Name, email, phone, city | `person` |
 | WhatsApp number (digits only, international format) | `person.whatsapp` |
 | TikTok / Instagram / GitHub / LinkedIn | `socials` (empty = hidden everywhere) |
-| Live demo + GitHub URL of each of the 5 builds | `projects["maison-ember"].liveUrl`, `.githubUrl`, … |
+| Own deployment + GitHub URL of each build (optional) | `projects["maison-ember"].liveUrl`, `.githubUrl`, … |
+| Package prices, care plan, add-ons, deposit share | `pricing` |
 | Prices (EGP + USD) and delivery days | `pricing.packages` |
 | Default currency shown | `pricing.defaultCurrency` |
 | CV file | `cv.file` (replace `public/cv/youssef-adel-cv.pdf`) |
 
-### Adding the live URLs of the five projects
+### Live demos and project URLs
 
-When a build is deployed, paste its URLs:
+Every build already has a working demo at `/demo/<slug>` (code in `src/components/demos/`). If you deploy a build on its own, paste its URLs and the "Try it live" button switches to it:
 
 ```ts
 projects: {
@@ -65,7 +69,7 @@ projects: {
 }
 ```
 
-Until a URL is filled, the site shows a "Demo coming soon" / "Code on request" chip instead of a dead link. If a build ends up with different colors or fonts than planned, update its file in `src/content/projects/`.
+Until `githubUrl` is filled, the site shows "Code on request" instead of a dead link. If a build ends up with different colors or fonts than planned, update its file in `src/content/projects/`.
 
 ### Copy and content
 
@@ -99,7 +103,7 @@ brand/                 logo SVGs + BRAND.md
 public/{cv,fonts,images}
 screenshots/           mobile / tablet / desktop, English and Arabic
 src/app/[locale]/      routes (root layout lives here so <html lang dir> is right)
-src/components/        ui · layout · sections · motion · case-study (code-built mockups)
+src/components/        ui · layout · sections · motion · case-study (code-built mockups) · demos (live apps)
 src/config/site.ts     the one file to edit
 src/content/           copy (en/ar), projects, services, faq
 src/lib/               i18n, seo, og, fonts, gsap loader, contact schema

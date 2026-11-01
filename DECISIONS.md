@@ -15,10 +15,13 @@ Every call I made without asking, and why. Edit anything here through `src/confi
 
 ## Business placeholders (edit these)
 
-9. **Prices are placeholders** in `site.ts → pricing`: Launch from EGP 15,000 / USD 450, Growth from EGP 38,000 / USD 1,100, Custom from EGP 75,000 / USD 2,200. Delivery windows (7–10 days, 3–5 weeks, scoped) are also placeholders.
-10. **Payment terms** in the FAQ ("50% to start, 50% before launch") and **response time** ("within one working day") are sensible defaults, not facts from the CV. Change them in `src/content/faq/index.ts` and the copy files.
-11. **Site URL** defaults to `https://youssefadel.dev` (placeholder). Set `NEXT_PUBLIC_SITE_URL` in Vercel; sitemap, canonical URLs and OG images use it.
-12. **Live demo and GitHub URLs** for the five projects are empty, so the site shows "Demo coming soon" / "Code on request" states instead of dead links.
+9. **Prices are placeholders** in `site.ts → pricing`, lowered in the pricing upgrade to sit comfortably in the Egyptian freelance market: Launch from EGP 12,000 / USD 350, Growth from EGP 30,000 / USD 900, Custom from EGP 60,000 / USD 1,800. Delivery windows, the "where the money goes" percentages, the monthly care plan (EGP 1,500) and add-on prices are also placeholders in the same file.
+10. **Payment terms** ("50% to start, 50% before launch", `pricing.deposit`) and **response time** ("within one working day") are sensible defaults, not facts from the CV. Change them in `site.ts`, `src/content/faq/index.ts` and the copy files.
+11. **Site URL** defaults to the live Vercel URL `https://youssef-portfolio-pi.vercel.app`. When you add your own domain, set `NEXT_PUBLIC_SITE_URL` in Vercel; sitemap, canonical URLs and OG images use it.
+12. **Live demos:** every build has a working demo inside this site at `/demo/<slug>`, so "Try it live" is never a dead link. If a build is later deployed on its own, set its `liveUrl` in `site.ts` and the button points there. GitHub links stay "Code on request" until `githubUrl` is filled.
+12a. **The comparison table** (template / agency / me) uses qualitative "Yes / Sometimes / No", not invented numbers or competitor names.
+12b. **Two new builds, Sufra and Maskan,** were added as portfolio builds (fictional restaurant and fictional listings), designed and built in this repo as demos. Like the other five, they are labeled "Portfolio build", never client work.
+12c. **Demos are client-only and keep state in `localStorage`** (cart, bookings, budgets) under keys `demo:<slug>:*`; "Reset demo" clears them. Nothing is sent anywhere. Sufra's WhatsApp button opens WhatsApp's share screen (no fixed number) so test orders never reach a real restaurant. Demo UI is English except Sufra and Pulse Club, which switch between Arabic and English like the real products would.
 
 ## Technical
 
