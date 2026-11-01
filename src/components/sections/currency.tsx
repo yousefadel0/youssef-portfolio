@@ -5,7 +5,7 @@ import type { Currency } from "@/config/site";
 import type { Locale } from "@/lib/i18n";
 import { cn, formatPrice } from "@/lib/utils";
 
-const CurrencyContext = createContext<{ currency: Currency; setCurrency: (c: Currency) => void }>({
+export const CurrencyContext = createContext<{ currency: Currency; setCurrency: (c: Currency) => void }>({
   currency: "EGP",
   setCurrency: () => {},
 });
