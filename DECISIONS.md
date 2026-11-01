@@ -42,7 +42,7 @@ Every call I made without asking, and why. Edit anything here through `src/confi
 27. **Offscreen sections use `content-visibility: auto`**, and ScrollTrigger refreshes when the page height settles.
 28. **Only the display font is preloaded**; the loader shows the drawn monogram (not live text) so the intro never waits for fonts. The hero words start their rise already partly visible so the headline paints on the first frame.
 29. **Work-index hover previews are typographic posters in each build's colors**, not extra mockups, to keep the HTML payload down. The full code-built mockups appear in the showcase panels and case studies.
-30. Results on this machine: desktop Performance 99, Accessibility 100, Best Practices 100, SEO 100. Mobile (simulated slow 4G + 4× CPU) Accessibility / Best Practices / SEO 100, Performance 79–90 depending on run noise; observed LCP equals first paint. The remaining gap is the size of the home page (five code-built device mockups). Re-measure on the deployed Vercel URL with PageSpeed Insights, which is less noisy than a local laptop.
+30. Results on this machine, from a fresh clone of the repo: desktop Performance 98–100 on every page, Accessibility 100, Best Practices 100, SEO 100. Mobile (simulated slow 4G + 4× CPU): Accessibility / SEO 100, Performance 88–92 on home, Arabic home and /links, ~80 on case studies; observed LCP equals first paint. Device mockups are decorative and hidden from screen readers (`aria-hidden`); the text around them describes each build. The remaining gap is the size of the home page (five code-built device mockups). Re-measure on the deployed Vercel URL with PageSpeed Insights, which is less noisy than a local laptop.
 
 ## Repository
 
