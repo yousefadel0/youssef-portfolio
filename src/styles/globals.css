@@ -359,8 +359,10 @@ html.js .wipe-reveal.is-in {
   animation: curtain-lift 0.75s var(--ease-quart) forwards;
 }
 
+/* `backwards`, not `both`: a transform left filling after the animation would make this
+   wrapper the containing block for fixed children and break GSAP pins (Process went blank). */
 .page-enter {
-  animation: page-enter 0.9s var(--ease-expo) 0.25s both;
+  animation: page-enter 0.9s var(--ease-expo) 0.25s backwards;
 }
 
 @keyframes curtain-lift {
