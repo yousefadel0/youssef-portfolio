@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowIcon, ArrowUpRightIcon, DownloadIcon, MailIcon, socialIcons, WhatsAppIcon } from "@/components/ui/icons";
+import { ArrowIcon, ArrowUpRightIcon, DownloadIcon, InstagramIcon, MailIcon, socialIcons, socialNames, WhatsAppIcon } from "@/components/ui/icons";
 import { LangSwitch } from "@/components/ui/lang-switch";
 import { Logomark, Wordmark } from "@/components/ui/logo";
 import { activeSocials, site } from "@/config/site";
@@ -30,7 +30,8 @@ export default async function LinksPage({ params }: PageProps<"/[locale]/links">
     { label: l.services, href: href(locale, "/services"), icon: ArrowIcon, tone: "line" },
     { label: l.cv, href: site.cv.file, icon: DownloadIcon, tone: "line", download: site.cv.fileName },
     { label: l.email, href: mailtoUrl(), icon: MailIcon, tone: "line" },
-  ] as const;
+    ...(site.socials.instagram ? [{ label: l.instagram, href: site.socials.instagram, icon: InstagramIcon, tone: "line", external: true } as const] : []),
+  ];
 
   return (
     <main id="main" className="relative min-h-[100svh] overflow-hidden">
@@ -90,8 +91,14 @@ export default async function LinksPage({ params }: PageProps<"/[locale]/links">
                     {inner}
                   </Link>
                 ) : (
-                  <a href={r.href} className={cls} {...("download" in r ? { download: r.download } : {})}>
+                  <a
+                    href={r.href}
+                    className={cls}
+                    {...("download" in r ? { download: r.download } : {})}
+                    {...("external" in r ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  >
                     {inner}
+                    {"external" in r ? <span className="sr-only">{t.common.newTab}</span> : null}
                   </a>
                 )}
               </li>
@@ -130,7 +137,7 @@ export default async function LinksPage({ params }: PageProps<"/[locale]/links">
               const Icon = socialIcons[name];
               return (
                 <li key={name}>
-                  <a href={url} target="_blank" rel="noopener noreferrer" aria-label={name} className="grid size-12 place-items-center border border-ink hover:bg-ink hover:text-bone">
+                  <a href={url} target="_blank" rel="noopener noreferrer" aria-label={socialNames[name]} className="grid size-12 place-items-center border border-ink hover:bg-ink hover:text-bone">
                     <Icon />
                   </a>
                 </li>

@@ -31,7 +31,7 @@ export const site = {
   /** Leave empty to hide. */
   socials: {
     tiktok: "",
-    instagram: "",
+    instagram: "https://www.instagram.com/y0ousef_adell/",
     github: "",
     linkedin: "",
   },

@@ -348,6 +348,7 @@ const ar: Dictionary = {
     services: "ببني إيه",
     cv: "حمّل السي في",
     email: "ابعتلي إيميل",
+    instagram: "تابعني على إنستجرام",
     site: "ادخل الموقع كامل",
     workTitle: "الشغل",
   },

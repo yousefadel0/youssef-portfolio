@@ -111,6 +111,8 @@ export const socialIcons = {
   linkedin: LinkedinIcon,
 } as const;
 
+export const socialNames = { tiktok: "TikTok", instagram: "Instagram", github: "GitHub", linkedin: "LinkedIn" } as const;
+
 /** Geometric line icons for the five services, drawn on the build-sheet grid. */
 export const ServiceGlyph = ({ icon, size = 44, ...props }: IconProps & { icon: ServiceIcon }) => {
   const common = { ...base(size, props), viewBox: "0 0 48 48", strokeWidth: 2 };

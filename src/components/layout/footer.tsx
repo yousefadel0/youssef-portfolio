@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Wordmark } from "@/components/ui/logo";
-import { ArrowUpRightIcon, socialIcons } from "@/components/ui/icons";
+import { ArrowUpRightIcon, socialIcons, socialNames } from "@/components/ui/icons";
 import { Year } from "@/components/layout/year";
 import { activeSocials, site } from "@/config/site";
 import type { Dictionary } from "@/content/copy";
@@ -66,7 +66,7 @@ export const Footer = ({ locale, t }: { locale: Locale; t: Dictionary }) => {
                   const Icon = socialIcons[name];
                   return (
                     <li key={name}>
-                      <a href={url} target="_blank" rel="noopener noreferrer" aria-label={name} className="grid size-11 place-items-center border border-line-light transition-colors hover:border-kiln hover:text-kiln">
+                      <a href={url} target="_blank" rel="noopener noreferrer" aria-label={socialNames[name]} className="grid size-11 place-items-center border border-line-light transition-colors hover:border-kiln hover:text-kiln">
                         <Icon />
                       </a>
                     </li>

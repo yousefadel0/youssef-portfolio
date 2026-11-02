@@ -6,7 +6,7 @@ Every call I made without asking, and why. Edit anything here through `src/confi
 
 1. **Public name:** "Youssef Adel" (first + father's name, as in the CV file name). Full legal name appears on the CV page and in JSON-LD `alternateName`.
 2. **Years:** "Building since 2020" is taken from the CV. I never print a computed "X years" figure in copy except as "since 2020".
-3. **No GitHub / LinkedIn / TikTok / Instagram links** exist in the CV. The config has empty strings for them; empty socials are hidden automatically everywhere (footer, /links, JSON-LD `sameAs`).
+3. **No social links** exist in the CV. Instagram (`@y0ousef_adell`) was added later at the user's request; GitHub / LinkedIn / TikTok stay empty strings, and empty socials are hidden automatically everywhere (footer, /links, JSON-LD `sameAs`).
 4. **WhatsApp number** defaults to the phone number in the CV (`201004662467`). Confirm it is the number you use on WhatsApp, or change `whatsapp` in `site.ts`.
 5. **Framework names** (Next.js, Flutter, etc.) are not in the CV. They appear only as "the stack of this build" on each case study, taken from the project briefs. The About section uses only the disciplines the CV lists.
 6. **The five projects** are labeled "Portfolio build" everywhere. Results are framed as build targets from the briefs (e.g. "Lighthouse 90+ target", "WCAG AA"), not as measured client outcomes, because the builds were not finished when this site was made.

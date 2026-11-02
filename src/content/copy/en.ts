@@ -346,6 +346,7 @@ const en = {
     services: "What I build",
     cv: "Download my CV",
     email: "Email me",
+    instagram: "Follow me on Instagram",
     site: "Visit the full site",
     workTitle: "The work",
   },
