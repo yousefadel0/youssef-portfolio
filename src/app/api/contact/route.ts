@@ -34,14 +34,45 @@ const render = (b: Brief) => {
     ["Name", b.name],
     ["Business", b.business || "—"],
     ["Phone", b.phone],
-    ["WhatsApp", wa],
     ["Email", b.email || "—"],
     ["Language", b.locale],
   ];
-  const cell = (k: string, v: string) => (k === "WhatsApp" ? `<a href="${escape(v)}">Chat on WhatsApp</a>` : escape(v));
-  const text = `${rows.map(([k, v]) => `${k}: ${v}`).join("\n")}\n\n${b.details}`;
-  const html = `<h2>New project brief</h2><table>${rows.map(([k, v]) => `<tr><td><b>${k}</b></td><td>${cell(k, v)}</td></tr>`).join("")}</table><p style="white-space:pre-wrap">${escape(b.details)}</p>`;
-  return { text, html };
+  const text = `${rows.map(([k, v]) => `${k}: ${v}`).join("\n")}\nWhatsApp: ${wa}\n\n${b.details}`;
+  const table = rows.map(([k, v]) => `<tr><td><b>${k}</b></td><td>${escape(v)}</td></tr>`).join("");
+  const html = `<h2>New project brief</h2><table>${table}<tr><td><b>WhatsApp</b></td><td><a href="${wa}">Chat on WhatsApp</a></td></tr></table><p style="white-space:pre-wrap">${escape(b.details)}</p>`;
+  // Telegram's HTML mode: bold labels, no tables.
+  const telegram = `<b>New project brief</b>\n\n${rows.map(([k, v]) => `<b>${k}:</b> ${escape(v)}`).join("\n")}\n\n${escape(b.details)}`;
+  return { text, html, telegram, wa };
+};
+
+type Rendered = ReturnType<typeof render>;
+
+const sendEmail = async (key: string, to: string, brief: Brief, { text, html }: Rendered) => {
+  const { error } = await new Resend(key).emails.send({
+    from: process.env.CONTACT_FROM_EMAIL || "Portfolio <onboarding@resend.dev>",
+    to: [to],
+    replyTo: brief.email || undefined,
+    subject: `New brief: ${brief.projectTypes.join(", ")} — ${brief.name}`,
+    text,
+    html,
+  });
+  if (error) throw new Error(error.message);
+};
+
+/** Instant phone notification through a Telegram bot, with a button that opens the client's WhatsApp. */
+const sendTelegram = async (token: string, chatId: string, { telegram, wa }: Rendered) => {
+  const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      chat_id: chatId,
+      text: telegram,
+      parse_mode: "HTML",
+      link_preview_options: { is_disabled: true },
+      reply_markup: { inline_keyboard: [[{ text: "💬 WhatsApp", url: wa }]] },
+    }),
+  });
+  if (!res.ok) throw new Error(`Telegram ${res.status}: ${await res.text()}`);
 };
 
 export async function POST(request: Request) {
@@ -62,29 +93,28 @@ export async function POST(request: Request) {
   // Honeypot filled: pretend success so bots learn nothing.
   if (brief.website) return NextResponse.json({ ok: true });
 
-  const { text, html } = render(brief);
-  const key = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_TO_EMAIL;
+  const rendered = render(brief);
+  const { RESEND_API_KEY: key, CONTACT_TO_EMAIL: to, TELEGRAM_BOT_TOKEN: tgToken, TELEGRAM_CHAT_ID: tgChat } = process.env;
 
-  if (!key || !to) {
-    console.info(`[contact] New brief (Resend not configured, logging instead)\n${text}`);
-    return NextResponse.json({ ok: true, delivered: "console" });
+  const channels: [string, () => Promise<void>][] = [];
+  if (key && to) channels.push(["email", () => sendEmail(key, to, brief, rendered)]);
+  if (tgToken && tgChat) channels.push(["telegram", () => sendTelegram(tgToken, tgChat, rendered)]);
+
+  if (!channels.length) {
+    console.info(`[contact] New brief (no email or Telegram configured, logging instead)\n${rendered.text}`);
+    return NextResponse.json({ ok: true, delivered: ["console"] });
   }
 
-  try {
-    const resend = new Resend(key);
-    const { error } = await resend.emails.send({
-      from: process.env.CONTACT_FROM_EMAIL || "Portfolio <onboarding@resend.dev>",
-      to: [to],
-      replyTo: brief.email || undefined,
-      subject: `New brief: ${brief.projectTypes.join(", ")} — ${brief.name}`,
-      text,
-      html,
-    });
-    if (error) throw new Error(error.message);
-    return NextResponse.json({ ok: true, delivered: "email" });
-  } catch (err) {
-    console.error("[contact] Resend failed", err);
+  const results = await Promise.allSettled(channels.map(([, send]) => send()));
+  const delivered = channels.filter((_, i) => results[i].status === "fulfilled").map(([name]) => name);
+  results.forEach((r, i) => {
+    if (r.status === "rejected") console.error(`[contact] ${channels[i][0]} failed`, r.reason);
+  });
+
+  if (!delivered.length) {
+    // Every channel failed: keep the brief in the logs so it isn't lost, and let the visitor try WhatsApp.
+    console.info(`[contact] Undelivered brief\n${rendered.text}`);
     return NextResponse.json({ ok: false, error: "send_failed" }, { status: 502 });
   }
+  return NextResponse.json({ ok: true, delivered });
 }

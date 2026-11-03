@@ -1,12 +1,22 @@
 "use client";
 
+import { track } from "@vercel/analytics";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { useId, useRef, useState, type FormEvent } from "react";
+import { useRouter } from "next/navigation";
+import { useId, useRef, useState, useSyncExternalStore, type FormEvent } from "react";
 import { ArrowIcon, CheckIcon, WhatsAppIcon } from "@/components/ui/icons";
 import type { Dictionary } from "@/content/copy";
 import { briefSchema, stepFields, type BriefField } from "@/lib/contact-schema";
-import type { Locale } from "@/lib/i18n";
+import { href, type Locale } from "@/lib/i18n";
 import { cn, whatsappUrl } from "@/lib/utils";
+
+/** `?type=` values for links that open the form with a project type picked; same order as `copy.projectTypes`. */
+const typeSlugs = ["menu", "website", "store", "booking", "dashboard", "app", "unsure"] as const;
+
+/** Read by the /contact/sent page to pre-write the WhatsApp follow-up. */
+export const sentKey = "brief-sent";
+
+const noSubscribe = () => () => {};
 
 type Copy = Dictionary["contactPage"];
 type State = {
@@ -39,11 +49,29 @@ export const BriefForm = ({ copy, locale }: { copy: Copy; locale: Locale }) => {
   const [dir, setDir] = useState(1);
   const [data, setData] = useState<State>(empty);
   const [errors, setErrors] = useState<Partial<Record<BriefField, string>>>({});
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "error">("idle");
   const reduce = useReducedMotion();
+  const router = useRouter();
   const uid = useId();
   const heading = useRef<HTMLHeadingElement>(null);
   const total = copy.steps.length;
+
+  // A link like /ar/contact?type=menu picks the project type and opens on the budget step.
+  // Read after hydration (the page is static), then applied once while rendering.
+  const typeParam = useSyncExternalStore(
+    noSubscribe,
+    () => new URLSearchParams(window.location.search).get("type") ?? "",
+    () => "",
+  );
+  const [appliedType, setAppliedType] = useState("");
+  if (typeParam !== appliedType) {
+    setAppliedType(typeParam);
+    const picked = copy.projectTypes[typeSlugs.indexOf(typeParam as (typeof typeSlugs)[number])];
+    if (picked) {
+      setData((d) => ({ ...d, projectTypes: [picked] }));
+      setStep(1);
+    }
+  }
 
   const set = <K extends keyof State>(key: K, value: State[K]) => {
     setData((d) => ({ ...d, [key]: value }));
@@ -87,7 +115,13 @@ export const BriefForm = ({ copy, locale }: { copy: Copy; locale: Locale }) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...data, locale }),
       });
-      setStatus(res.ok ? "success" : "error");
+      if (!res.ok) return setStatus("error");
+      const project = data.projectTypes.join(" · ");
+      try {
+        sessionStorage.setItem(sentKey, JSON.stringify({ name: data.name.trim(), project }));
+      } catch {}
+      track("Brief sent", { project });
+      router.push(href(locale, "/contact/sent"));
     } catch {
       setStatus("error");
     }
@@ -112,29 +146,6 @@ export const BriefForm = ({ copy, locale }: { copy: Copy; locale: Locale }) => {
     center: { opacity: 1, x: 0 },
     exit: (d: number) => ({ opacity: 0, x: reduce ? 0 : d * (locale === "ar" ? 48 : -48) }),
   };
-
-  if (status === "success") {
-    return (
-      <div className="bg-ink p-8 text-bone md:p-12" role="status">
-        <span className="grid size-14 place-items-center bg-kiln text-ink">
-          <CheckIcon size={26} />
-        </span>
-        <h2 className="headline mt-8 text-[clamp(2.2rem,4vw,3.4rem)]">{copy.successTitle}</h2>
-        <p className="mt-4 max-w-md text-ash">{copy.successText}</p>
-        <button
-          type="button"
-          onClick={() => {
-            setData(empty);
-            setStep(0);
-            setStatus("idle");
-          }}
-          className="mt-8 border-b border-bone pb-1 font-medium hover:text-kiln"
-        >
-          {copy.successAgain}
-        </button>
-      </div>
-    );
-  }
 
   const chip = (selected: boolean) =>
     cn(

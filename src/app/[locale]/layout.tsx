@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
+import { Analytics } from "@/components/analytics";
 import { Cursor } from "@/components/motion/cursor";
 import { SmoothScroll } from "@/components/motion/smooth-scroll";
 import { Logomark } from "@/components/ui/logo";
@@ -65,6 +66,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
         <SmoothScroll />
         <Cursor locale={locale} />
         {children}
+        <Analytics />
       </body>
     </html>
   );

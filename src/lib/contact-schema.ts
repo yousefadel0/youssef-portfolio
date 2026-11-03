@@ -7,7 +7,7 @@ const isPhone = (v: string) => /^\+?[\d\s()-]+$/.test(v) && v.replace(/\D/g, "")
 
 /** Shared by the brief form (per-step checks) and the API route (full check). */
 export const briefSchema = z.object({
-  projectTypes: z.array(z.string().min(1).max(40)).min(1).max(6),
+  projectTypes: z.array(z.string().min(1).max(40)).min(1).max(7),
   budget: z.string().min(1).max(40),
   timeline: z.string().min(1).max(40),
   name: z.string().trim().min(2).max(80),
