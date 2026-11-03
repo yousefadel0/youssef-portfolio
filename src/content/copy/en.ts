@@ -10,7 +10,7 @@ const en = {
     contactDescription: "Tell me what you're building in four short steps. Or skip the form and message me on WhatsApp.",
     sent: "Brief received",
     cv: "CV",
-    cvDescription: "Download Youssef Adel's CV: full-stack development since 2020, AI and LLM integration, networking and cybersecurity.",
+    cvDescription: "Download Youssef Adel's CV: full-stack web and mobile development since 2020: TypeScript, React/Next.js, Node.js, Laravel and Flutter.",
     links: "Links",
     linksDescription: "Everything in one place: WhatsApp, the work, prices and my CV.",
     workDescription: (name: string, type: string) => `${name}: a ${type.toLowerCase()} portfolio build by Youssef Adel. The problem, the approach, the design system and the stack.`,
@@ -349,7 +349,7 @@ const en = {
       { years: "2025 – Present", title: "AI / LLM Developer", place: "LLM API integration & automation workflows" },
       { years: "2021 – 2023", title: "Digital Marketing / Media Buyer", place: "Digital advertising & media buying" },
     ],
-    education: { years: "2022 – Present", title: "B.Sc. Computer Science", place: "Modern Academy, Cairo · Fourth year · CCNA, CCNP & CEH coursework" },
+    education: { years: "2022 – Present", title: "B.Sc. Computer Science", place: "Modern Academy, Cairo · Fourth year" },
   },
   linksPage: {
     hello: "Websites & apps for people starting something.",

@@ -12,7 +12,7 @@ const ar: Dictionary = {
     contactDescription: "احكيلي عن مشروعك في ٤ خطوات قصيرة. أو سيبك من الفورم وابعتلي واتساب.",
     sent: "البيانات وصلت",
     cv: "السيرة الذاتية",
-    cvDescription: "حمّل السيرة الذاتية ليوسف عادل: تطوير Full-Stack من ٢٠٢٠، دمج الذكاء الاصطناعي و LLMs، شبكات وأمن معلومات.",
+    cvDescription: "حمّل السيرة الذاتية ليوسف عادل: تطوير ويب وموبايل Full-Stack من ٢٠٢٠ بـ TypeScript · React/Next.js · Node.js · Laravel · Flutter.",
     links: "اللينكات",
     linksDescription: "كل حاجة في مكان واحد: واتساب، الشغل، الأسعار والسيرة الذاتية.",
     workDescription: (name: string, type: string) => `${name}: مشروع من البورتفوليو (${type}) من تصميم وتنفيذ يوسف عادل. المشكلة، الفكرة، الديزاين سيستم والتقنيات.`,
@@ -351,7 +351,7 @@ const ar: Dictionary = {
       { years: "2025 – الآن", title: "مطوّر AI / LLM", place: "دمج LLM APIs وأتمتة الـ workflows" },
       { years: "2021 – 2023", title: "ديجيتال ماركتنج / ميديا باير", place: "إعلانات ديجيتال وميديا باينج" },
     ],
-    education: { years: "2022 – الآن", title: "بكالوريوس علوم الحاسب", place: "Modern Academy، القاهرة · سنة رابعة · كورسات CCNA · CCNP · CEH" },
+    education: { years: "2022 – الآن", title: "بكالوريوس علوم الحاسب", place: "Modern Academy، القاهرة · سنة رابعة" },
   },
   linksPage: {
     hello: "مواقع وتطبيقات لكل حد بيبدأ حاجة جديدة.",
