@@ -33,7 +33,7 @@ export const site = {
     tiktok: "",
     instagram: "https://www.instagram.com/y0ousef_adell/",
     github: "",
-    linkedin: "",
+    linkedin: "https://www.linkedin.com/in/yousef-adel-07b0832a0/",
   },
 
   cv: {

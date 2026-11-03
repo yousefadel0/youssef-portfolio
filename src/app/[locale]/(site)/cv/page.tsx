@@ -50,9 +50,9 @@ export default async function CvPage({ params }: PageProps<"/[locale]/cv">) {
             <div className="flex items-start justify-between gap-6 border-b-2 border-ink pb-6">
               <div>
                 <p className="headline text-[clamp(1.8rem,3.4vw,2.8rem)] leading-[0.95]" dir="ltr">
-                  {site.person.fullName}
+                  {site.person.name}
                 </p>
-                <p className="mt-3 text-smoke">{locale === "ar" ? "مطوّر Full-Stack · مطوّر AI / LLM · شبكات وأمن معلومات" : "Full-Stack Developer · AI / LLM Developer · Cybersecurity & Networking"}</p>
+                <p className="mt-3 text-smoke">{locale === "ar" ? "مطوّر Full-Stack · TypeScript · React / Next.js · Node.js · Laravel · Flutter" : "Full-Stack Developer · TypeScript · React / Next.js · Node.js · Laravel · Flutter"}</p>
                 <p className="label mt-3 text-smoke" dir="ltr">
                   {site.person.city}, {site.person.country} · {site.person.phone} · {site.person.email}
                 </p>
