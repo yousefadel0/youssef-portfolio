@@ -47,7 +47,7 @@ export const homeJsonLd = (locale: Locale, t: Dictionary) => {
         address: { "@type": "PostalAddress", addressLocality: site.person.city, addressCountry: "EG" },
         knowsLanguage: ["ar", "en"],
         alumniOf: { "@type": "CollegeOrUniversity", name: "Modern Academy" },
-        knowsAbout: ["Full-stack web development", "AI and LLM integration", "Networking", "Cybersecurity", "Digital marketing"],
+        knowsAbout: ["Full-stack web development", "TypeScript", "React and Next.js", "Laravel", "Mobile development with Flutter", "AI and LLM integration", "Digital marketing"],
         ...(activeSocials.length ? { sameAs: activeSocials.map(([, url]) => url) } : {}),
       },
       {

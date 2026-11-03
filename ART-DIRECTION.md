@@ -7,7 +7,7 @@ Every page is a **build sheet**: the paperwork an engineer pins to the wall whil
 Why this idea:
 
 - It is honest. Youssef builds things; the site looks like the workshop, not like a gallery of mood images.
-- It fits the CV: engineering, networks, security, systems thinking. Annotation lines and layered diagrams come naturally.
+- It fits the CV: engineering, shipping, systems thinking. Annotation lines and layered diagrams come naturally.
 - It sells to business owners. Work orders, delivery times and "what I need from you" lists read as reliable, not arty.
 - It is distinct on TikTok. Warm paper + orange + green does not look like any default template.
 

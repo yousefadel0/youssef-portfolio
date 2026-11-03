@@ -171,14 +171,13 @@ const en = {
     story: [
       "I started as a freelance full-stack developer in 2020, taking projects from requirements to launch: planning, frontend, backend, APIs, testing and the debugging nobody sees.",
       "From 2021 to 2023 I trained in digital marketing and media buying. That changed how I build. A store isn't finished when it looks good; it's finished when an ad can send people to it and they buy.",
-      "In 2024 I went deep into networking and cybersecurity, and in 2025 into AI and LLM integration. Today I'm a fourth-year Computer Science student at Modern Academy in Cairo, and I put all of it into the things I build for you.",
+      "In 2025 I went deep into AI and LLM integration. Today I'm a fourth-year Computer Science student at Modern Academy in Cairo, and I put all of it into the things I build for you.",
     ],
     timelineLabel: "The path",
     timeline: [
       { year: "2020", title: "First freelance builds", text: "Full-stack web and app projects, remote and project-based." },
       { year: "2021", title: "Marketing & media buying", text: "Professional training in digital ads and campaign structure, through 2023." },
       { year: "2022", title: "Computer Science, Modern Academy", text: "Started my bachelor's degree. Now in fourth year." },
-      { year: "2024", title: "Networking & security", text: "Structured training, labs, application and network security." },
       { year: "2025", title: "AI & LLM development", text: "LLM integrations, AI workflows and automation in real apps." },
       { year: "Now", title: "Building for you", text: "Stores, booking systems, dashboards and apps for new businesses." },
     ],
@@ -189,7 +188,7 @@ const en = {
       { name: "Interface", text: "Responsive frontend, usability, performance" },
       { name: "Logic", text: "Backend, REST APIs, integrations, testing" },
       { name: "Intelligence", text: "LLM integration, AI workflows, automation" },
-      { name: "Infrastructure", text: "Networking, TCP/IP, web and network security" },
+      { name: "Infrastructure", text: "Docker, VPS and dedicated servers, VMware ESXi" },
     ],
     stats: [
       { value: 2020, label: "Building since", plain: true },

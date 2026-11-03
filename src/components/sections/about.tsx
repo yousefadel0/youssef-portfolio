@@ -38,7 +38,7 @@ export const About = ({ locale, t }: { locale: Locale; t: Dictionary }) => (
       {/* Timeline */}
       <div className="mt-20 md:mt-28">
         <p className="label mb-8 text-bone/70">{t.about.timelineLabel}</p>
-        <ol className="relative grid gap-0 border-t border-line-light sm:grid-cols-2 lg:grid-cols-6">
+        <ol className="relative grid gap-0 border-t border-line-light sm:grid-cols-2 lg:grid-cols-5">
           {t.about.timeline.map((m, i) => (
             <Reveal as="li" key={m.year} delay={i * 70} className="relative border-b border-line-light py-6 pe-6 lg:border-e lg:border-b-0 lg:last:border-e-0">
               <span aria-hidden className={cn("absolute -top-[5px] start-0 size-2.5", i === t.about.timeline.length - 1 ? "bg-kiln" : "bg-bone")} />
@@ -75,7 +75,7 @@ export const About = ({ locale, t }: { locale: Locale; t: Dictionary }) => (
             <Reveal as="li" key={layer.name} variant="wipe" delay={i * 90}>
               <div
                 className={cn(
-                  "group/layer relative grid grid-cols-[3rem_1fr] items-center gap-4 px-5 py-5 transition-colors duration-500 md:grid-cols-[3.5rem_12rem_1fr] md:px-7 md:py-6",
+                  "group/layer relative grid grid-cols-[3rem_1fr] items-center gap-4 px-5 py-5 transition-colors duration-500 md:grid-cols-[3.5rem_minmax(12rem,auto)_1fr] md:px-7 md:py-6",
                   i === 0 ? "bg-kiln text-ink" : i % 2 === 1 ? "bg-bone text-ink" : "bg-nile-2 text-bone",
                 )}
                 style={{ marginInlineStart: `${i * 4}%` }}
