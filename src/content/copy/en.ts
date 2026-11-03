@@ -336,7 +336,7 @@ const en = {
     view: "Open in browser",
     updated: "Updated",
     summaryTitle: "In short",
-    summary: "Full-stack developer shipping web and mobile products since 2020: TypeScript, React and Next.js, Node.js and Laravel/PHP, PostgreSQL, MySQL, SQLite and Redis, and Flutter for mobile. I deploy what I build with Docker, from static hosting to VPS, dedicated servers and VMware ESXi.",
+    summary: "AI Engineer and full-stack developer at TeleTech, shipping web and mobile products since 2020: TypeScript, React and Next.js, Node.js, Laravel/PHP and Python, PostgreSQL, MySQL, Redis and Firebase, and Flutter for mobile. I deploy what I build with Docker, from static hosting to VPS, dedicated servers and VMware ESXi.",
     experienceTitle: "Experience",
     educationTitle: "Education",
     languagesTitle: "Languages",
@@ -344,11 +344,11 @@ const en = {
     availabilityTitle: "Availability",
     availability: "Part-time remote, 20–25 h a week · Freelance projects",
     roles: [
+      { years: "2026 – Present", title: "AI Engineer & Full-Stack Software Developer", place: "TeleTech · Full-time" },
       { years: "2020 – Present", title: "Full-Stack Web & Mobile Developer", place: "Freelance and project-based · Remote" },
-      { years: "2025 – Present", title: "AI / LLM Developer", place: "LLM API integration & automation workflows" },
       { years: "2021 – 2023", title: "Digital Marketing / Media Buyer", place: "Digital advertising & media buying" },
     ],
-    education: { years: "2022 – Present", title: "B.Sc. Computer Science", place: "Modern Academy, Cairo · Fourth year" },
+    education: { years: "2022 – Present", title: "B.Sc. Computer Science", place: "Modern Academy, Maadi, Cairo · Fourth year" },
   },
   linksPage: {
     hello: "Websites & apps for people starting something.",

@@ -338,7 +338,7 @@ const ar: Dictionary = {
     view: "افتحه في المتصفح",
     updated: "آخر تحديث",
     summaryTitle: "باختصار",
-    summary: "مطوّر Full-Stack ببني وبطلّع منتجات ويب وموبايل من ٢٠٢٠. الواجهات بـ TypeScript · React · Next.js، والباك اند بـ Node.js · Laravel/PHP، والداتا على PostgreSQL · MySQL · SQLite · Redis، والموبايل بـ Flutter. وبرفع اللي ببنيه بنفسي بـ Docker، من الاستضافة الاستاتيك لحد سيرفرات VPS والسيرفرات الـ dedicated و VMware ESXi.",
+    summary: "AI Engineer ومطوّر Full-Stack في TeleTech، وببني وبطلّع منتجات ويب وموبايل من ٢٠٢٠. الواجهات بـ TypeScript · React · Next.js، والباك اند بـ Node.js · Laravel/PHP · Python، والداتا على PostgreSQL · MySQL · Redis · Firebase، والموبايل بـ Flutter. وبرفع اللي ببنيه بنفسي بـ Docker، من الاستضافة الاستاتيك لحد سيرفرات VPS والسيرفرات الـ dedicated و VMware ESXi.",
     experienceTitle: "الخبرة",
     educationTitle: "التعليم",
     languagesTitle: "اللغات",
@@ -346,11 +346,11 @@ const ar: Dictionary = {
     availabilityTitle: "متاح لـ",
     availability: "دوام جزئي ريموت، ٢٠–٢٥ ساعة في الأسبوع · مشاريع فريلانس",
     roles: [
+      { years: "2026 – الآن", title: "AI Engineer ومطوّر Full-Stack", place: "TeleTech · دوام كامل" },
       { years: "2020 – الآن", title: "مطوّر ويب وموبايل Full-Stack", place: "فريلانس وبالمشروع · ريموت" },
-      { years: "2025 – الآن", title: "مطوّر AI / LLM", place: "دمج LLM APIs وأتمتة الـ workflows" },
       { years: "2021 – 2023", title: "ديجيتال ماركتنج / ميديا باير", place: "إعلانات ديجيتال وميديا باينج" },
     ],
-    education: { years: "2022 – الآن", title: "بكالوريوس علوم الحاسب", place: "Modern Academy، القاهرة · سنة رابعة" },
+    education: { years: "2022 – الآن", title: "بكالوريوس علوم الحاسب", place: "Modern Academy، المعادي · سنة رابعة" },
   },
   linksPage: {
     hello: "مواقع وتطبيقات لكل حد بيبدأ حاجة جديدة.",
