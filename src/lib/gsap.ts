@@ -5,10 +5,10 @@ type GsapModules = { gsap: typeof import("gsap").gsap; ScrollTrigger: typeof imp
 let interaction: Promise<void> | null = null;
 let pending: Promise<GsapModules> | null = null;
 
-/** Resolves on the visitor's first scroll, touch, pointer or key input. */
+/** Resolves on the visitor's first scroll, touch, pointer, key or click input (screen readers can send a bare click). */
 export const firstInteraction = () => {
   interaction ??= new Promise<void>((resolve) => {
-    const events = ["scroll", "wheel", "touchstart", "pointerdown", "pointermove", "keydown"] as const;
+    const events = ["scroll", "wheel", "touchstart", "pointerdown", "pointermove", "keydown", "click"] as const;
     const done = () => {
       events.forEach((e) => window.removeEventListener(e, done));
       resolve();

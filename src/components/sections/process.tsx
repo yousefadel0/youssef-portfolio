@@ -24,7 +24,7 @@ export const Process = ({ label, title, intro, youGet, steps, rtl }: Props) => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     let cancelled = false;
     let revert = () => {};
-    loadGsap().then(({ gsap }) => {
+    loadGsap().then(({ gsap, ScrollTrigger }) => {
       if (cancelled) return;
       const mm = gsap.matchMedia();
       revert = () => mm.revert();
@@ -33,12 +33,20 @@ export const Process = ({ label, title, intro, youGet, steps, rtl }: Props) => {
         const el = track.current;
         const sec = section.current;
         if (!el || !sec) return;
+        const before = window.scrollY;
+        const below = before > sec.getBoundingClientRect().top + before;
         const distance = () => Math.max(0, el.scrollWidth - el.clientWidth);
         const tl = gsap.timeline({
           scrollTrigger: { trigger: sec, start: "top top", end: () => `+=${distance()}`, scrub: 0.6, pin: true, invalidateOnRefresh: true },
         });
         tl.to(el, { x: () => (rtl ? distance() : -distance()), ease: "none" }, 0);
         tl.fromTo(barH.current, { scaleX: 0 }, { scaleX: 1, ease: "none" }, 0);
+        // GSAP loads on the first interaction, so the pin's extra scroll length can appear above someone
+        // already past this section (a reload, or a link straight to #about). Keep their view in place.
+        if (below) {
+          ScrollTrigger.refresh();
+          window.scrollTo(0, before + distance());
+        }
       });
 
       mm.add("(max-width: 1023px)", () => {

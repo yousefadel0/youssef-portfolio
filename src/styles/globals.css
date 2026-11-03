@@ -386,6 +386,10 @@ html.js .wipe-reveal.is-in {
   content-visibility: auto;
   contain-intrinsic-size: auto 900px;
 }
+/* Set while jumping to a section: real heights, so the target position is right (see smooth-scroll.tsx). */
+.cv-measure .cv-auto {
+  content-visibility: visible;
+}
 
 /* Mobile menu: clip-path wipe, links rise in sequence. */
 .menu-panel {
