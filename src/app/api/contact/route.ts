@@ -17,18 +17,30 @@ const limited = (ip: string) => {
 
 const escape = (s: string) => s.replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
 
+/** wa.me link; local Egyptian numbers (01…) get the 20 country code, "00" prefixes are dropped. */
+const whatsapp = (phone: string) => {
+  let d = phone.replace(/\D/g, "");
+  if (d.startsWith("00")) d = d.slice(2);
+  else if (/^01\d{9}$/.test(d)) d = `2${d}`;
+  return `https://wa.me/${d}`;
+};
+
 const render = (b: Brief) => {
+  const wa = whatsapp(b.phone);
   const rows: [string, string][] = [
     ["Project", b.projectTypes.join(", ")],
     ["Budget", b.budget],
     ["Timeline", b.timeline],
     ["Name", b.name],
     ["Business", b.business || "—"],
-    ["Contact", b.contact],
+    ["Phone", b.phone],
+    ["WhatsApp", wa],
+    ["Email", b.email || "—"],
     ["Language", b.locale],
   ];
+  const cell = (k: string, v: string) => (k === "WhatsApp" ? `<a href="${escape(v)}">Chat on WhatsApp</a>` : escape(v));
   const text = `${rows.map(([k, v]) => `${k}: ${v}`).join("\n")}\n\n${b.details}`;
-  const html = `<h2>New project brief</h2><table>${rows.map(([k, v]) => `<tr><td><b>${k}</b></td><td>${escape(v)}</td></tr>`).join("")}</table><p style="white-space:pre-wrap">${escape(b.details)}</p>`;
+  const html = `<h2>New project brief</h2><table>${rows.map(([k, v]) => `<tr><td><b>${k}</b></td><td>${cell(k, v)}</td></tr>`).join("")}</table><p style="white-space:pre-wrap">${escape(b.details)}</p>`;
   return { text, html };
 };
 
@@ -64,7 +76,7 @@ export async function POST(request: Request) {
     const { error } = await resend.emails.send({
       from: process.env.CONTACT_FROM_EMAIL || "Portfolio <onboarding@resend.dev>",
       to: [to],
-      replyTo: brief.contact.includes("@") ? brief.contact : undefined,
+      replyTo: brief.email || undefined,
       subject: `New brief: ${brief.projectTypes.join(", ")} — ${brief.name}`,
       text,
       html,

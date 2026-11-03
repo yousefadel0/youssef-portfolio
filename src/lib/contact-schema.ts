@@ -1,6 +1,9 @@
 import { z } from "zod";
 
-const emailOrPhone = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) || /^\+?[\d\s()-]{7,20}$/.test(v);
+/** Arabic-Indic digits (٠١٢…) to Latin, so "٠١٠٠…" validates like "0100…". */
+const latinDigits = (v: string) => v.replace(/[٠-٩]/g, (d) => String(d.charCodeAt(0) - 0x0660));
+
+const isPhone = (v: string) => /^\+?[\d\s()-]+$/.test(v) && v.replace(/\D/g, "").length >= 8 && v.replace(/\D/g, "").length <= 15;
 
 /** Shared by the brief form (per-step checks) and the API route (full check). */
 export const briefSchema = z.object({
@@ -9,7 +12,14 @@ export const briefSchema = z.object({
   timeline: z.string().min(1).max(40),
   name: z.string().trim().min(2).max(80),
   business: z.string().trim().max(120).optional().default(""),
-  contact: z.string().trim().min(5).max(120).refine(emailOrPhone),
+  phone: z.string().trim().transform(latinDigits).refine(isPhone),
+  email: z
+    .string()
+    .trim()
+    .max(120)
+    .refine((v) => v === "" || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v))
+    .optional()
+    .default(""),
   details: z.string().trim().min(20).max(3000),
   locale: z.enum(["en", "ar"]),
   /** Honeypot: humans never see this field. */
@@ -18,6 +28,6 @@ export const briefSchema = z.object({
 
 export type Brief = z.infer<typeof briefSchema>;
 
-export const stepFields = [["projectTypes"], ["budget", "timeline"], ["name", "contact", "details"]] as const;
+export const stepFields = [["projectTypes"], ["budget", "timeline"], ["name", "phone", "email", "details"]] as const;
 
 export type BriefField = (typeof stepFields)[number][number];

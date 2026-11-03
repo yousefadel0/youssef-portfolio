@@ -15,19 +15,21 @@ type State = {
   timeline: string;
   name: string;
   business: string;
-  contact: string;
+  phone: string;
+  email: string;
   details: string;
   website: string;
 };
 
-const empty: State = { projectTypes: [], budget: "", timeline: "", name: "", business: "", contact: "", details: "", website: "" };
+const empty: State = { projectTypes: [], budget: "", timeline: "", name: "", business: "", phone: "", email: "", details: "", website: "" };
 
 const fieldError: Record<BriefField, keyof Copy["errors"]> = {
   projectTypes: "projectType",
   budget: "budget",
   timeline: "timeline",
   name: "name",
-  contact: "contact",
+  phone: "phone",
+  email: "email",
   details: "details",
 };
 
@@ -278,22 +280,42 @@ export const BriefForm = ({ copy, locale }: { copy: Copy; locale: Locale }) => {
                     </label>
                     <input id={`${uid}-business`} value={data.business} onChange={(e) => set("business", e.target.value)} autoComplete="organization" className={input(false)} />
                   </div>
-                  <div className="md:col-span-2">
-                    <label htmlFor={`${uid}-contact`} className="label text-smoke">
-                      {copy.contactMethod}
+                  <div>
+                    <label htmlFor={`${uid}-phone`} className="label text-smoke">
+                      {copy.phone}
                     </label>
                     <input
-                      id={`${uid}-contact`}
-                      value={data.contact}
-                      onChange={(e) => set("contact", e.target.value)}
+                      id={`${uid}-phone`}
+                      type="tel"
+                      value={data.phone}
+                      onChange={(e) => set("phone", e.target.value)}
+                      autoComplete="tel"
+                      inputMode="tel"
+                      placeholder="01xx xxx xxxx"
+                      dir="ltr"
+                      aria-invalid={Boolean(errors.phone)}
+                      aria-describedby={errors.phone ? `${uid}-phone-err` : undefined}
+                      className={cn(input(Boolean(errors.phone)), "rtl:text-right")}
+                    />
+                    {err("phone")}
+                  </div>
+                  <div>
+                    <label htmlFor={`${uid}-email`} className="label text-smoke">
+                      {copy.email}
+                    </label>
+                    <input
+                      id={`${uid}-email`}
+                      type="email"
+                      value={data.email}
+                      onChange={(e) => set("email", e.target.value)}
                       autoComplete="email"
                       inputMode="email"
                       dir="ltr"
-                      aria-invalid={Boolean(errors.contact)}
-                      aria-describedby={errors.contact ? `${uid}-contact-err` : undefined}
-                      className={cn(input(Boolean(errors.contact)), "rtl:text-right")}
+                      aria-invalid={Boolean(errors.email)}
+                      aria-describedby={errors.email ? `${uid}-email-err` : undefined}
+                      className={cn(input(Boolean(errors.email)), "rtl:text-right")}
                     />
-                    {err("contact")}
+                    {err("email")}
                   </div>
                   <div className="md:col-span-2">
                     <label htmlFor={`${uid}-details`} className="label text-smoke">
@@ -325,19 +347,22 @@ export const BriefForm = ({ copy, locale }: { copy: Copy; locale: Locale }) => {
                     { k: copy.steps[0], v: data.projectTypes.join(" · "), s: 0 },
                     { k: copy.steps[1], v: `${data.budget} · ${data.timeline}`, s: 1 },
                     { k: copy.name, v: [data.name, data.business].filter(Boolean).join(" · "), s: 2 },
-                    { k: copy.contactMethod, v: data.contact, s: 2 },
+                    { k: copy.phone, v: data.phone, s: 2 },
+                    { k: copy.email, v: data.email, s: 2 },
                     { k: copy.details, v: data.details, s: 2 },
-                  ].map((row) => (
-                    <div key={row.k} className="grid grid-cols-[1fr_auto] gap-x-4 border-b border-ink/20 py-4 sm:grid-cols-[10rem_1fr_auto]">
-                      <dt className="label pt-1 text-smoke">{row.k}</dt>
-                      <dd className="col-span-2 row-start-2 mt-1 whitespace-pre-line sm:col-span-1 sm:row-start-auto sm:mt-0">{row.v}</dd>
-                      <dd className="col-start-2 row-start-1 sm:col-start-auto">
-                        <button type="button" onClick={() => go(row.s)} className="label underline underline-offset-4 hover:text-kiln">
-                          {copy.edit}
-                        </button>
-                      </dd>
-                    </div>
-                  ))}
+                  ]
+                    .filter((row) => row.v)
+                    .map((row) => (
+                      <div key={row.k} className="grid grid-cols-[1fr_auto] gap-x-4 border-b border-ink/20 py-4 sm:grid-cols-[10rem_1fr_auto]">
+                        <dt className="label pt-1 text-smoke">{row.k}</dt>
+                        <dd className="col-span-2 row-start-2 mt-1 whitespace-pre-line sm:col-span-1 sm:row-start-auto sm:mt-0">{row.v}</dd>
+                        <dd className="col-start-2 row-start-1 sm:col-start-auto">
+                          <button type="button" onClick={() => go(row.s)} className="label underline underline-offset-4 hover:text-kiln">
+                            {copy.edit}
+                          </button>
+                        </dd>
+                      </div>
+                    ))}
                 </dl>
                 {status === "error" ? (
                   <p className="mt-5 text-[#B42318]" role="alert">
