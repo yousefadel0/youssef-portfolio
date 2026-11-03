@@ -14,7 +14,7 @@ Non-development topics from the original CV were removed from the public profile
 | Location | Cairo, Egypt |
 | Phone | +20 100 466 2467 |
 | Email | yjou811@gmail.com |
-| Links | LinkedIn linkedin.com/in/yousef-adel-07b0832a0 · GitHub github.com/yousefadel0 (given by Youssef, 2026-11) |
+| Links | LinkedIn linkedin.com/in/youssef-adel-dev · GitHub github.com/yousefadel0 (given by Youssef, 2026-11) |
 | Languages | Arabic (native), English (professional working proficiency) |
 | Availability | Part-time remote (20–25 h/week) · Freelance projects |
 
