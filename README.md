@@ -10,7 +10,7 @@ Art direction: **"The Build Sheet"**. Warm paper, oversized Bricolage Grotesque,
 
 | Page | Route |
 | --- | --- |
-| Home: hero, services, seven showcase builds, pinned process, pricing (packages, value breakdown, comparison, estimate builder), about, FAQ, CTA | `/en`, `/ar` |
+| Home: hero, services, seven showcase builds, pinned process, about, FAQ, CTA | `/en`, `/ar` |
 | Case studies ×7 (problem, approach, design system, screens, features, stack, results) | `/en/work/<slug>` |
 | **Live demos ×7**: working apps with sample data (store, QR menu, SaaS site, booking, real estate, dashboard, finance app) | `/en/demo/<slug>` |
 | Services in detail + add-ons | `/en/services` |
@@ -53,9 +53,6 @@ Checks: `npm run lint` and `npx tsc --noEmit` (both run clean).
 | WhatsApp number (digits only, international format) | `person.whatsapp` |
 | TikTok / Instagram / GitHub / LinkedIn | `socials` (empty = hidden everywhere) |
 | Own deployment + GitHub URL of each build (optional) | `projects["maison-ember"].liveUrl`, `.githubUrl`, … |
-| Package prices, care plan, add-ons, deposit share | `pricing` |
-| Prices (EGP + USD) and delivery days | `pricing.packages` |
-| Default currency shown | `pricing.defaultCurrency` |
 | CV file | `cv.file` (replace `public/cv/youssef-adel-cv.pdf`) |
 
 ### Live demos and project URLs

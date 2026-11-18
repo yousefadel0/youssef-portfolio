@@ -25,7 +25,6 @@ export const Header = ({ locale, t }: Props) => {
     { label: t.nav.work, href: `${home}#work` },
     { label: t.nav.services, href: href(locale, "/services") },
     { label: t.nav.process, href: `${home}#process` },
-    { label: t.nav.pricing, href: `${home}#pricing` },
     { label: t.nav.about, href: `${home}#about` },
     { label: t.nav.contact, href: href(locale, "/contact") },
   ];

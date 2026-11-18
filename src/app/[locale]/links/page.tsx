@@ -26,7 +26,6 @@ export default async function LinksPage({ params }: PageProps<"/[locale]/links">
   const rows = [
     { label: l.brief, href: href(locale, "/contact"), icon: ArrowIcon, tone: "ink" },
     { label: l.work, href: `${href(locale)}#work`, icon: ArrowIcon, tone: "line" },
-    { label: l.pricing, href: `${href(locale)}#pricing`, icon: ArrowIcon, tone: "line" },
     { label: l.services, href: href(locale, "/services"), icon: ArrowIcon, tone: "line" },
     { label: l.cv, href: site.cv.file, icon: DownloadIcon, tone: "line", download: site.cv.fileName },
     { label: l.email, href: mailtoUrl(), icon: MailIcon, tone: "line" },

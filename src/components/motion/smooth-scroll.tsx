@@ -98,7 +98,7 @@ export const SmoothScroll = () => {
     };
   }, []);
 
-  // In-page links (the header's Services, Process, Pricing, About) scroll here instead of the browser's
+  // In-page links (the header's Work, Process, About) scroll here instead of the browser's
   // or Next's jump, which read stale positions. Capture phase, so Next's Link sees defaultPrevented.
   useEffect(() => {
     const onClick = (e: MouseEvent) => {

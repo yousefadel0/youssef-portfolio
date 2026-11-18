@@ -13,7 +13,7 @@ export const About = ({ locale, t }: { locale: Locale; t: Dictionary }) => (
     <div className="shell">
       <div className="grid gap-12 lg:grid-cols-12">
         <div className="lg:col-span-7">
-          <SectionLabel index={5} className="text-bone/70">
+          <SectionLabel index={4} className="text-bone/70">
             {t.about.label}
           </SectionLabel>
           <SplitText id="about-title" lines={t.about.title} className="display mt-6 text-[clamp(3.4rem,10vw,10rem)]" lineClassNames={[undefined, "text-kiln"]} />
@@ -80,7 +80,7 @@ export const About = ({ locale, t }: { locale: Locale; t: Dictionary }) => (
                 )}
                 style={{ marginInlineStart: `${i * 4}%` }}
               >
-                <span className="label tabular">L{pad(5 - i)}</span>
+                <span className="label tabular">L{pad(t.about.layers.length - i)}</span>
                 <span className="headline text-[clamp(1.5rem,2.4vw,2.1rem)]">{layer.name}</span>
                 <span className="col-span-2 text-[0.95rem] opacity-80 md:col-span-1">{layer.text}</span>
               </div>

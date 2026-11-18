@@ -21,7 +21,6 @@ Non-development topics from the original CV were removed from the public profile
 ### Experience timeline
 
 - **2020 – present** · Full-Stack Web & Application Developer · Remote / freelance / project-based. Designs, builds, tests and improves web and app solutions across frontend and backend. Requirements analysis, solution planning, API integration, root-cause debugging, continuous iteration.
-- **2021 – 2023** · Digital Marketing / Media Buyer. Professional training in digital marketing and media buying; campaign structures and advertising fundamentals.
 - **2022 – present** · BSc Computer Science, Modern Academy (fourth-year student).
 - **2025 – present** · AI / LLM Developer. LLM integrations, AI-assisted workflows, prompt engineering, automation.
 
@@ -30,12 +29,11 @@ Non-development topics from the original CV were removed from the public profile
 - Full-stack & web: frontend and backend, end-to-end builds, REST/API integration, responsive web, testing, debugging, performance and quality.
 - AI / LLM: AI-powered apps, LLM API integration, AI automation workflows, prompt engineering, AI workflow design.
 - Stack (named by Youssef, 2026-11): TypeScript, JavaScript, React, Next.js, Tailwind CSS, Node.js, Laravel/PHP, PostgreSQL, MySQL, SQLite, Redis, Flutter/Dart, Docker, Git, VPS and dedicated servers, VMware ESXi.
-- Digital: marketing fundamentals, media buying, digital advertising, tech/business integration.
 - Strengths: analytical problem solving, systematic troubleshooting, cross-domain thinking, fast adaptation, independent and remote work.
 
 ### The story the CV tells
 
-Started building for the web in 2020 and never stopped. Spent 2021–2023 learning how ads and campaigns actually bring customers in, which is rare for a developer and directly useful to store owners. Went deep into AI and LLMs in 2025. Now in the final stretch of a CS degree in Cairo, selling builds to startups and new businesses through TikTok.
+Started building for the web in 2020 and never stopped. Went deep into AI and LLMs in 2025. Now in the final stretch of a CS degree in Cairo, selling builds to startups and new businesses through TikTok.
 
 ### What the CV does NOT contain (so the site never claims it)
 

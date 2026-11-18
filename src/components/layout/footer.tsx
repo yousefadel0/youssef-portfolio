@@ -12,7 +12,6 @@ export const Footer = ({ locale, t }: { locale: Locale; t: Dictionary }) => {
   const pages = [
     { label: t.nav.work, href: `${home}#work` },
     { label: t.nav.services, href: href(locale, "/services") },
-    { label: t.nav.pricing, href: `${home}#pricing` },
     { label: t.nav.contact, href: href(locale, "/contact") },
     { label: t.nav.cv, href: href(locale, "/cv") },
     { label: t.meta.links, href: href(locale, "/links") },

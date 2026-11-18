@@ -15,8 +15,8 @@ Every call I made without asking, and why. Edit anything here through `src/confi
 
 ## Business placeholders (edit these)
 
-9. **Prices are placeholders** in `site.ts → pricing`, lowered in the pricing upgrade to sit comfortably in the Egyptian freelance market: Launch from EGP 12,000 / USD 350, Growth from EGP 30,000 / USD 900, Custom from EGP 60,000 / USD 1,800. Delivery windows, the "where the money goes" percentages, the monthly care plan (EGP 1,500) and add-on prices are also placeholders in the same file.
-10. **Payment terms** ("50% to start, 50% before launch", `pricing.deposit`) and **response time** ("within one working day") are sensible defaults, not facts from the CV. Change them in `site.ts`, `src/content/faq/index.ts` and the copy files.
+9. **No prices on the site** (2026-11, Youssef's call): the pricing section, estimate builder and package prices were removed. Every project is priced with the client after a short call; the brief form still asks for a rough budget.
+10. **Response time** ("within one working day") is a sensible default, not a fact from the CV. Change it in `src/content/copy`.
 11. **Site URL** defaults to the live Vercel URL `https://youssef-portfolio-pi.vercel.app`. When you add your own domain, set `NEXT_PUBLIC_SITE_URL` in Vercel; sitemap, canonical URLs and OG images use it.
 12. **Live demos:** every build has a working demo inside this site at `/demo/<slug>`, so "Try it live" is never a dead link. If a build is later deployed on its own, set its `liveUrl` in `site.ts` and the button points there. GitHub links stay "Code on request" until `githubUrl` is filled.
 12a. **The comparison table** (template / agency / me) uses qualitative "Yes / Sometimes / No", not invented numbers or competitor names.

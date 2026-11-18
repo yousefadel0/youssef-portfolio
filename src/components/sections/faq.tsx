@@ -10,7 +10,7 @@ export const Faq = ({ locale, t }: { locale: Locale; t: Dictionary }) => (
     <div className="shell grid gap-12 lg:grid-cols-12">
       <div className="lg:col-span-5">
         <div className="lg:sticky lg:top-28">
-          <SectionLabel index={6}>{t.faq.label}</SectionLabel>
+          <SectionLabel index={5}>{t.faq.label}</SectionLabel>
           <SplitText id="faq-title" lines={t.faq.title} className="display mt-6 text-[clamp(2.6rem,5.5vw,5.5rem)]" />
         </div>
       </div>

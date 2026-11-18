@@ -3,7 +3,6 @@ import { About } from "@/components/sections/about";
 import { Faq } from "@/components/sections/faq";
 import { FinalCta } from "@/components/sections/final-cta";
 import { Hero } from "@/components/sections/hero";
-import { Pricing } from "@/components/sections/pricing";
 import { Process } from "@/components/sections/process";
 import { Services } from "@/components/sections/services";
 import { Work } from "@/components/sections/work";
@@ -38,7 +37,6 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
         steps={t.process.steps}
         rtl={locale === "ar"}
       />
-      <Pricing locale={locale} t={t} />
       <About locale={locale} t={t} />
       <Faq locale={locale} t={t} />
       <FinalCta locale={locale} t={t} />

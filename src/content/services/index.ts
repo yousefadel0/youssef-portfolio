@@ -1,4 +1,4 @@
-import type { PackageId, ProjectSlug } from "@/config/site";
+import type { ProjectSlug } from "@/config/site";
 import type { Localized } from "@/lib/i18n";
 
 export type ServiceIcon = "site" | "store" | "booking" | "dashboard" | "mobile";
@@ -7,7 +7,8 @@ export type Service = {
   id: string;
   icon: ServiceIcon;
   example: ProjectSlug;
-  startsWith: PackageId;
+  /** Pre-selects this project type on the brief form (`/contact?type=`). */
+  briefType: "website" | "store" | "booking" | "dashboard" | "app";
   copy: Localized<{ name: string; for: string; short: string; get: string[]; timeline: string }>;
 };
 
@@ -16,7 +17,7 @@ export const services: Service[] = [
     id: "websites",
     icon: "site",
     example: "halcyon",
-    startsWith: "launch",
+    briefType: "website",
     copy: {
       en: {
         name: "Websites",
@@ -38,7 +39,7 @@ export const services: Service[] = [
     id: "stores",
     icon: "store",
     example: "maison-ember",
-    startsWith: "growth",
+    briefType: "store",
     copy: {
       en: {
         name: "Online stores",
@@ -60,7 +61,7 @@ export const services: Service[] = [
     id: "booking",
     icon: "booking",
     example: "pulse-club",
-    startsWith: "growth",
+    briefType: "booking",
     copy: {
       en: {
         name: "Booking systems",
@@ -82,7 +83,7 @@ export const services: Service[] = [
     id: "dashboards",
     icon: "dashboard",
     example: "atlas-console",
-    startsWith: "custom",
+    briefType: "dashboard",
     copy: {
       en: {
         name: "Dashboards",
@@ -104,7 +105,7 @@ export const services: Service[] = [
     id: "mobile",
     icon: "mobile",
     example: "tidal",
-    startsWith: "custom",
+    briefType: "app",
     copy: {
       en: {
         name: "Mobile apps",

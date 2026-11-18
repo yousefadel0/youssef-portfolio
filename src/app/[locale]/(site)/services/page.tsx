@@ -7,13 +7,12 @@ import { FinalCta } from "@/components/sections/final-cta";
 import { WorkIndex } from "@/components/sections/work-index";
 import { ArrowIcon, CheckIcon, ServiceGlyph } from "@/components/ui/icons";
 import { SectionLabel } from "@/components/ui/section-label";
-import { site } from "@/config/site";
 import { getDictionary } from "@/content/copy";
 import { getProject, projects } from "@/content/projects";
 import { services } from "@/content/services";
 import { href, type Locale } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/seo";
-import { cn, formatPrice, pad } from "@/lib/utils";
+import { cn, pad } from "@/lib/utils";
 
 export const generateMetadata = async ({ params }: PageProps<"/[locale]/services">): Promise<Metadata> => {
   const { locale } = await params;
@@ -46,7 +45,6 @@ export default async function ServicesPage({ params }: PageProps<"/[locale]/serv
       {services.map((s, i) => {
         const c = s.copy[locale];
         const example = getProject(s.example)!;
-        const pkg = site.pricing.packages[s.startsWith];
         const dark = i % 2 === 1;
         return (
           <section
@@ -89,14 +87,15 @@ export default async function ServicesPage({ params }: PageProps<"/[locale]/serv
                     <dd className="headline text-[1.6rem]">{c.timeline}</dd>
                   </div>
                   <div>
-                    <dt className={cn("label mb-3", dark ? "text-ash" : "text-smoke")}>{t.servicesPage.startsWith}</dt>
+                    <dt className={cn("label mb-3", dark ? "text-ash" : "text-smoke")}>{t.servicesPage.price}</dt>
                     <dd>
-                      <a href={`${href(locale)}#pricing`} className="headline text-[1.6rem] underline decoration-kiln decoration-2 underline-offset-[6px]">
-                        {t.pricing.packages[s.startsWith].name}
-                      </a>
-                      <span className={cn("ms-3 text-[0.95rem]", dark ? "text-ash" : "text-smoke")}>
-                        {t.pricing.from} {formatPrice(pkg.EGP, "EGP", locale)}
-                      </span>
+                      <Link
+                        href={`${href(locale, "/contact")}?type=${s.briefType}`}
+                        className="headline text-[1.6rem] underline decoration-kiln decoration-2 underline-offset-[6px]"
+                      >
+                        {t.servicesPage.quote}
+                      </Link>
+                      <p className={cn("mt-2 text-[0.95rem]", dark ? "text-ash" : "text-smoke")}>{t.servicesPage.priceNote}</p>
                     </dd>
                   </div>
                 </dl>

@@ -47,7 +47,7 @@ export const homeJsonLd = (locale: Locale, t: Dictionary) => {
         address: { "@type": "PostalAddress", addressLocality: site.person.city, addressCountry: "EG" },
         knowsLanguage: ["ar", "en"],
         alumniOf: { "@type": "CollegeOrUniversity", name: "Modern Academy" },
-        knowsAbout: ["Full-stack web development", "TypeScript", "React and Next.js", "Laravel", "Mobile development with Flutter", "AI and LLM integration", "Digital marketing"],
+        knowsAbout: ["Full-stack web development", "TypeScript", "React and Next.js", "Laravel", "Mobile development with Flutter", "AI and LLM integration"],
         ...(activeSocials.length ? { sameAs: activeSocials.map(([, url]) => url) } : {}),
       },
       {
@@ -61,20 +61,6 @@ export const homeJsonLd = (locale: Locale, t: Dictionary) => {
         telephone: site.person.phone,
         address: { "@type": "PostalAddress", addressLocality: site.person.city, addressCountry: "EG" },
         serviceType: ["Website development", "E-commerce development", "Booking systems", "Admin dashboards", "Mobile app development"],
-        hasOfferCatalog: {
-          "@type": "OfferCatalog",
-          name: t.pricing.label,
-          itemListElement: (["launch", "growth", "custom"] as const).map((id) => ({
-            "@type": "Offer",
-            name: t.pricing.packages[id].name,
-            description: t.pricing.packages[id].for,
-            priceSpecification: {
-              "@type": "PriceSpecification",
-              minPrice: site.pricing.packages[id].EGP,
-              priceCurrency: "EGP",
-            },
-          })),
-        },
       },
     ],
   };

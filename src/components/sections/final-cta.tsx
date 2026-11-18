@@ -7,7 +7,7 @@ import type { Dictionary } from "@/content/copy";
 import { href, type Locale } from "@/lib/i18n";
 import { mailtoUrl, whatsappUrl } from "@/lib/utils";
 
-export const FinalCta = ({ locale, t, index = 7 }: { locale: Locale; t: Dictionary; index?: number }) => (
+export const FinalCta = ({ locale, t, index = 6 }: { locale: Locale; t: Dictionary; index?: number }) => (
   <section aria-labelledby="cta-title" className="cv-auto relative overflow-hidden bg-kiln py-24 text-ink md:py-36">
     <CropMarks />
     <div className="shell">
